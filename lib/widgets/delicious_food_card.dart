@@ -22,6 +22,7 @@ class DeliciousFoodCard extends StatelessWidget {
       ),
       child: Center(
         child: InkWell(
+          borderRadius: BorderRadius.circular(45),
           onTap: onTap,
           child: Container(
             width: 63,

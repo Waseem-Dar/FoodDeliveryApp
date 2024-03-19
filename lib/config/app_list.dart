@@ -24,11 +24,38 @@ class AppList{
     {"name":"Wraps ","image":"assets/images/wrap-1.png"},
   ];
 
-  static List<Map<String,dynamic>> popularBurgersLIst = [
+  static List<Map<String,dynamic>> popularBurgersList = [
     {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
     {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
+
+  ];
+  static List<Map<String,dynamic>> dealList = [
+    {"image":"assets/images/deal-1.png"},
+    {"image":"assets/images/deal-2.png"},
+    {"image":"assets/images/deal-3.png"},
+    {"image":"assets/images/deal-4.png"},
+    {"image":"assets/images/deal-1.png"},
+    {"image":"assets/images/deal-2.png"},
+    {"image":"assets/images/deal-3.png"},
+    {"image":"assets/images/deal-4.png"},
+
+  ];
+  static List<Map<String,dynamic>> dealBannerList = [
+    {"image":"assets/images/banner-1.png"},
+    {"image":"assets/images/banner-2.png"},
+    {"image":"assets/images/banner-1.png"},
+    {"image":"assets/images/banner-2.png"},
+
+
+  ];
+
+  static List<Map<String,dynamic>> rateList = [
+    {"name":"Desi Tarkka","image":"assets/images/pop-1.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","rating":3.0},
+    {"name":"Spicy Cafe","image":"assets/images/pop-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","rating":4.5},
+    {"name":"Desi Tarkka","image":"assets/images/pop-1.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","rating":3.0},
+    {"name":"Spicy Cafe","image":"assets/images/pop-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","rating":4.5},
 
   ];
 

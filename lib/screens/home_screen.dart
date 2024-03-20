@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
+import 'package:food_app/screens/menu_bar_screen.dart';
 import 'package:food_app/widgets/delicious_food_card.dart';
 import 'package:food_app/widgets/desi_food_card.dart';
 import 'package:food_app/widgets/popular_card_widget.dart';
@@ -45,7 +47,6 @@ class _HomeScreenState extends State<HomeScreen> {
     mq = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
-
       child: Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -53,14 +54,19 @@ class _HomeScreenState extends State<HomeScreen> {
             collapsedHeight: 60,
             leading: Padding(
               padding: const EdgeInsets.only(left: 20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset("assets/images/line.png",width: 25,),
-                  Image.asset("assets/images/line-2.png",width: 21,height: 7,),
-                  Image.asset("assets/images/line-1.png",width: 14,),
-                ],
+              child: InkWell(
+                onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const MenuBarScreen(),));
+                },
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset("assets/images/line.png",width: 25,),
+                    Image.asset("assets/images/line-2.png",width: 21,height: 9,),
+                    Image.asset("assets/images/line-1.png",width: 14,),
+                  ],
+                ),
               ),
             ),
             centerTitle: true,
@@ -127,7 +133,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverFillRemaining(
             child: SingleChildScrollView(
-              // controller: _scrollController,
+              controller: _scrollController,
               child: Column(
                 children: [
                   Padding(
@@ -213,7 +219,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Enjoy Delicious Food",style: GoogleFonts.poppins(
                       fontSize:16,fontWeight:FontWeight.w600,color:Colors.black,),),
                   ),
-                                                        // Food List - 2
+                  //                                       // Food List - 2
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8,vertical: 10),
                     child: Row(
@@ -238,6 +244,43 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 0),
+                    child: Stack(
+                      children: [
+                         SizedBox(
+                            height: 120,
+                            child: ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 23),
+                              itemCount:AppList.deliciousFoodList.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                String name = AppList.deliciousFoodList[index]["name"];
+                                String image = AppList.deliciousFoodList[index]["image"];
+                                return DeliciousFoodCard(name: name, image: image, onTap: (){});
+                              },),
+                          ),
+                        SizedBox(
+                          height: 120,
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 5),
+                            child: Row(
+                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                ImageIcon(const AssetImage("assets/images/arrow-left.png"),size: 15,color: AppColors.black6,),
+                                ImageIcon(const AssetImage("assets/images/arrow-right.png"),size: 15,color: AppColors.black6,),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+
+
+
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30,25,15,15),
                     child: Row(

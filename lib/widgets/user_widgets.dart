@@ -45,5 +45,22 @@ class UserWidgets{
     );
   }
 
+  static Widget tileWidget(String icon,String title,VoidCallback onTap,double size){
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 3),
+      child: ListTile(
+          onTap: onTap,
+          dense: true,
+          horizontalTitleGap: 12,
+          contentPadding: const EdgeInsets.symmetric(horizontal: 23),
+          splashColor: AppColors.mainColor.withOpacity(0.05),
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          leading: ImageIcon( AssetImage(icon),size: size,color: AppColors.mainColor,),
+          title: Text(title,style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:AppColors.mainColor),
+          )
+      ),
+    );
+  }
+
 
 }

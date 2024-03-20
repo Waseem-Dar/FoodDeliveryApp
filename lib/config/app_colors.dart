@@ -12,4 +12,5 @@ class AppColors{
   static Color white1 =  const Color(0xFFEBEBEB);
 
 
+
 }

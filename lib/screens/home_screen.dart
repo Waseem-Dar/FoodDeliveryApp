@@ -81,7 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
             bottom:isSearch?PreferredSize(preferredSize: const Size(double.infinity, 80), child: Column(
               children: [
                 Text("What would you like to eat?",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.white,),),
-                UserWidgets.homePageTextField(searchController)
+                UserWidgets.homeSearchTextField(searchController)
               ],
             )):null,
 

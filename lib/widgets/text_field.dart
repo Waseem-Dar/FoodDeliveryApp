@@ -7,7 +7,7 @@ class TextFieldWidget extends StatefulWidget {
   final TextEditingController controller;
   final String icon;
   final bool isPassword;
-  const TextFieldWidget({Key? key, required this.controller, required this.icon, required this.isPassword});
+  const TextFieldWidget({super.key, required this.controller, required this.icon, required this.isPassword});
 
   @override
   State<TextFieldWidget> createState() => _TextFieldWidgetState();
@@ -19,7 +19,6 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
   @override
   void initState() {
     super.initState();
-    // Check if the initial text is not empty
     isFill = widget.controller.text.isNotEmpty;
   }
 
@@ -30,9 +29,9 @@ class _TextFieldWidgetState extends State<TextFieldWidget> {
       child: TextFormField(
         controller: widget.controller,
         obscureText: widget.isPassword,
+        obscuringCharacter: "●",
         style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
         onChanged: (value) {
-          // Update the fill  when text field is empty or not
           setState(() {
             isFill = value.isNotEmpty;
           });

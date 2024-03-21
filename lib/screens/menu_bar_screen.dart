@@ -56,7 +56,7 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
               UserWidgets.tileWidget("assets/images/offer-icon.png", "Vouchers & Offers", () {},26),
               UserWidgets.tileWidget("assets/images/order-icon.png", "Orders & Reordering", () {},23),
               UserWidgets.tileWidget("assets/images/addresses.png", "Addresses", () {},20),
-              UserWidgets.tileWidget("assets/images/user-icon.png", "Invite Friends", () {},20),  //icon missing
+              UserWidgets.tileWidget("assets/images/invite-icon.png", "Invite Friends", () {},20),  //icon missing
               UserWidgets.tileWidget("assets/images/about-icon.png", "About Us", () {},19),
               UserWidgets.tileWidget("assets/images/privacy-icon.png", "Privacy Policy", () {},23),
               UserWidgets.tileWidget("assets/images/service-icon.png", "Terms of Service", () {},23),

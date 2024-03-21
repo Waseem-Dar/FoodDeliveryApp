@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
-import 'package:food_app/screens/auth_screens/Signin_screen.dart';
+import 'package:food_app/screens/auth_screens/signin_screen.dart';
 import 'package:food_app/screens/auth_screens/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 

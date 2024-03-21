@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
-import 'package:food_app/screens/auth_screens/Signin_screen.dart';
+import 'package:food_app/screens/auth_screens/signin_screen.dart';
 import 'package:food_app/screens/auth_screens/send_otp_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -86,7 +86,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               child: TextFormField(
                                 controller: passwordController,
                                 obscureText:isPasswordShow? false:true,
-                                obscuringCharacter: "•",
+                                obscuringCharacter: "●",
                                 style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),
                                 decoration: InputDecoration(
                                   contentPadding: const EdgeInsets.only(right: 5),

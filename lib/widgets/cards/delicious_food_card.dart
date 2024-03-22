@@ -1,8 +1,6 @@
-
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
-
-import '../config/app_colors.dart';
+import '../../config/app_colors.dart';
 
 class DeliciousFoodCard extends StatelessWidget {
   final String name;
@@ -13,7 +11,7 @@ class DeliciousFoodCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 3),
+      margin: const EdgeInsets.symmetric(horizontal: 3),
       width:81,
       height: 120,
       decoration: BoxDecoration(

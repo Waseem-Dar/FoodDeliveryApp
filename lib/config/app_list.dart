@@ -29,8 +29,15 @@ class AppList{
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
     {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
-
   ];
+
+  static List<Map<String,dynamic>> favRestaurantsList = [
+    {"name":"Desi Tarrka","image":"assets/images/fav-1.png","details":"Experience the vibrant tastes of our authentic Desi restaurant,  where every dish tells a story of tradition and flavor fusion.","address":"Bahria Town ph 4","rating":4.8},
+    {"name":"Karahi Point","image":"assets/images/fav-2.png","details":"Indulge in a fiery symphony of flavors at our spicy haven.","address":"Giga Mall, Rawalpindi","rating":3.5},
+    {"name":"Desi Tarrka","image":"assets/images/fav-1.png","details":"Experience the vibrant tastes of our authentic Desi restaurant,  where every dish tells a story of tradition and flavor fusion.","address":"Bahria Town ph 4","rating":4.8},
+    {"name":"Karahi Point","image":"assets/images/fav-2.png","details":"Indulge in a fiery symphony of flavors at our spicy haven.","address":"Giga Mall, Rawalpindi","rating":3.5},
+  ];
+
   static List<Map<String,dynamic>> dealList = [
     {"image":"assets/images/deal-1.png"},
     {"image":"assets/images/deal-2.png"},

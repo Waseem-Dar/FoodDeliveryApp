@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:food_app/config/app_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../config/app_colors.dart';
+import '../../config/app_colors.dart';
 
 class PopularCard extends StatefulWidget {
   final String image;
@@ -74,11 +74,11 @@ class _PopularCardState extends State<PopularCard> {
                 Row(
                   children: [
                     Text("${widget.rating} Rating",style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w400,color:AppColors.black6),),
-                    SizedBox(width: 40,),
+                    const SizedBox(width: 40,),
                     Text("Popular",style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w500,color:AppColors.black6),),
                     Container(
                         height: 15,width: 13,
-                        padding: EdgeInsets.only(bottom: 2),
+                        padding: const EdgeInsets.only(bottom: 2),
                         child: Image.asset("assets/images/fire-1.png"))
                   ],
                 ),

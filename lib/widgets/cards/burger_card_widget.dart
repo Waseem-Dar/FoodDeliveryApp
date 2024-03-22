@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../config/app_colors.dart';
-import '../config/app_list.dart';
+import '../../config/app_colors.dart';
+import '../../config/app_list.dart';
 
 class BurgerCard extends StatefulWidget {
   final String name;

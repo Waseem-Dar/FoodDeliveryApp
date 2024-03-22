@@ -57,11 +57,11 @@ class _EditPhoneScreenState extends State<EditPhoneScreen> {
                   const SizedBox(height: 6,),
                   Text("Edit Phone No",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
                   Divider(color: AppColors.white1,thickness: 2,),
+                  const SizedBox(height: 40,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
-                        const SizedBox(height: 40,),
                         UserWidgets.textFieldLabel("Phone No"),
                         TextFormField(
                           controller: phoneController,
@@ -91,7 +91,7 @@ class _EditPhoneScreenState extends State<EditPhoneScreen> {
                             ),
                             errorStyle: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:AppColors.red),
                                               //Error show
-                            errorText:"Phone No is already/ registered   OR  Phone No doesn’t exists" ,
+                            // errorText:"Phone No is already/ registered   OR  Phone No doesn’t exists" ,
                             isDense: true,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(14),

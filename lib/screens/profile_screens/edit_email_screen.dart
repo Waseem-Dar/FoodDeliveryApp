@@ -91,7 +91,7 @@ class _EditEmailScreenState extends State<EditEmailScreen> {
                             ),
                             errorStyle: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:AppColors.red),
                                     // Error show
-                            errorText:"Incorrect Email  OR  Email is already registered" ,
+                            // errorText:"Incorrect Email  OR  Email is already registered" ,
                             isDense: true,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(14),

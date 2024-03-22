@@ -4,13 +4,13 @@ import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
 import 'package:food_app/screens/menu_bar_screen.dart';
-import 'package:food_app/widgets/delicious_food_card.dart';
-import 'package:food_app/widgets/desi_food_card.dart';
-import 'package:food_app/widgets/popular_card_widget.dart';
+import 'package:food_app/widgets/cards/delicious_food_card.dart';
+import 'package:food_app/widgets/cards/desi_food_card.dart';
+import 'package:food_app/widgets/cards/popular_card_widget.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../main.dart';
-import '../widgets/burger_card_widget.dart';
+import '../widgets/cards/burger_card_widget.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

@@ -55,7 +55,7 @@ class _PasswordTextFieldWidgetState extends State<PasswordTextFieldWidget> {
           borderSide: BorderSide(width: 1, color: AppColors.red),
         ),
         errorStyle: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:AppColors.red),
-        errorText:"Password is incorrect OR Passwords doesn’t match",
+        // errorText:"Password is incorrect OR Passwords doesn’t match",
         prefixIcon: Padding(
           padding: const EdgeInsets.fromLTRB(22, 14, 14, 14),
           child: ImageIcon(const AssetImage("assets/images/lock-icon.png"), size: 18, color: isFill ? AppColors.mainColor : AppColors.black3),

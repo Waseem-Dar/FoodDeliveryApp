@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
+import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/profile_screens/profile_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -15,6 +16,7 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(28,53,28,50),
@@ -49,7 +51,9 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
               UserWidgets.tileWidget("assets/images/user-icon.png", "View Profile", () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
               },17),
-              UserWidgets.tileWidget("assets/images/fav-icon.png", "Favourites", () {},20),
+              UserWidgets.tileWidget("assets/images/fav-icon.png", "Favourites", () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => FavoriteScreen(),));
+              },20),
               UserWidgets.tileWidget("assets/images/cart-icon.png", "My Cart", () {},22),
               UserWidgets.tileWidget("assets/images/current-l-icon.png", "Nearby", () {},21),
               Divider(color: AppColors.white1,height: 15,endIndent: 25,indent: 30 ,thickness: 2,),

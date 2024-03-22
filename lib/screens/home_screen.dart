@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
@@ -23,11 +24,13 @@ bool isSearch = false;
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
-  @override
-  void initState() {
-    super.initState();
-    _scrollController.addListener(_scrollListener);
-  }
+
+      @override
+      void initState() {
+        super.initState();
+        _scrollController.addListener(_scrollListener);
+      }
+
 
   @override
   void dispose() {
@@ -46,7 +49,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
     return GestureDetector(
+
       onTap: () => FocusScope.of(context).unfocus(),
+      onVerticalDragUpdate: (details) {
+        if (details.primaryDelta! < 0) {
+
+          setState(() {
+            isSearch = false;
+          });
+        } else if (details.primaryDelta! > 0) {// Scrolling down
+          setState(() {
+            isSearch = true;
+          });
+        }
+      },
       child: Scaffold(
       body: CustomScrollView(
         slivers: [
@@ -133,7 +149,7 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
           SliverFillRemaining(
             child: SingleChildScrollView(
-              controller: _scrollController,
+              // controller: _scrollController,
               child: Column(
                 children: [
                   Padding(

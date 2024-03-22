@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/profile_screens/change_password_screen.dart';
 import 'package:food_app/screens/profile_screens/edit_name_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
 import '../../widgets/user_widgets.dart';
 import 'edit_email_screen.dart';
+import 'edit_phone_screen.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -22,6 +24,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: Padding(
         padding: const EdgeInsets.only(bottom: 15),
@@ -80,9 +83,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   Navigator.push(context, MaterialPageRoute(builder: (context) => const EditEmailScreen(),));
                 },),
                 const SizedBox(height: 10,),
-                UserWidgets.profileTextField(phoneController, "assets/images/phone-icon.png", "Phone No", false, () {},),
+                UserWidgets.profileTextField(phoneController, "assets/images/phone-icon.png", "Phone No", false, () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const EditPhoneScreen(),));
+                },),
                 const SizedBox(height: 10,),
-                UserWidgets.profileTextField(passwordController, "assets/images/lock-icon.png", "Change Password", true, () {},),
+                UserWidgets.profileTextField(passwordController, "assets/images/lock-icon.png", "Change Password", true, () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const ChangePasswordScreen(),));
+                },),
               ],
             ),
           ),

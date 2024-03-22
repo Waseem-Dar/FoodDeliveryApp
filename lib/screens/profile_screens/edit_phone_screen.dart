@@ -5,15 +5,15 @@ import '../../config/app_colors.dart';
 import '../../widgets/user_widgets.dart';
 import 'edit_name_screen.dart';
 
-class EditEmailScreen extends StatefulWidget {
-  const EditEmailScreen({super.key});
+class EditPhoneScreen extends StatefulWidget {
+  const EditPhoneScreen({super.key});
 
   @override
-  State<EditEmailScreen> createState() => _EditEmailScreenState();
+  State<EditPhoneScreen> createState() => _EditPhoneScreenState();
 }
-TextEditingController emailController = TextEditingController(text:"LoremIpsum123@gmail.com");
+TextEditingController phoneController = TextEditingController(text:"123456789321");
 bool isEdit = false;
-class _EditEmailScreenState extends State<EditEmailScreen> {
+class _EditPhoneScreenState extends State<EditPhoneScreen> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -46,32 +46,32 @@ class _EditEmailScreenState extends State<EditEmailScreen> {
         body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),
-             child: Center(
-               child: Column(
-                  children: [
+            child: Center(
+              child: Column(
+                children: [
                   const SizedBox(
                     height: 53,),
                   UserWidgets.backButton(() {
                     Navigator.pop(context);
                     isEdit = false;},),
                   const SizedBox(height: 6,),
-                  Text("Edit Email",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
+                  Text("Edit Phone No",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
                   Divider(color: AppColors.white1,thickness: 2,),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 20),
                     child: Column(
                       children: [
                         const SizedBox(height: 40,),
-                        UserWidgets.textFieldLabel("Email"),
+                        UserWidgets.textFieldLabel("Phone No"),
                         TextFormField(
-                          controller: emailController,
+                          controller: phoneController,
                           style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
                           onChanged: (value) {
                             setState(() {
                               isEdit = true;
                             });
-                            },
-                            decoration: InputDecoration(
+                          },
+                          decoration: InputDecoration(
                             contentPadding: const EdgeInsets.only(right: 10),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(23),
@@ -81,24 +81,24 @@ class _EditEmailScreenState extends State<EditEmailScreen> {
                               borderRadius: BorderRadius.circular(23),
                               borderSide: BorderSide(width: 1, color: AppColors.mainColor),
                             ),
-                              focusedErrorBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(23),
-                                borderSide: BorderSide(width: 1, color: AppColors.red),
-                              ),
+                            focusedErrorBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(23),
+                              borderSide: BorderSide(width: 1, color: AppColors.red),
+                            ),
                             errorBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(23),
                               borderSide: BorderSide(width: 1, color: AppColors.red),
                             ),
                             errorStyle: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:AppColors.red),
-                                    // Error show
-                            errorText:"Incorrect Email  OR  Email is already registered" ,
+                                              //Error show
+                            errorText:"Phone No is already/ registered   OR  Phone No doesn’t exists" ,
                             isDense: true,
                             prefixIcon: Padding(
                               padding: const EdgeInsets.all(14),
-                              child: ImageIcon(const AssetImage("assets/images/email-icon.png",), size: 18, color: AppColors.mainColor),
+                              child: ImageIcon(const AssetImage("assets/images/phone-icon.png",), size: 18, color: AppColors.mainColor),
+                            ),
+                          ),
                         ),
-                                        ),
-                                      ),
                       ],
                     ),
                   ),

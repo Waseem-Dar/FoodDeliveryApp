@@ -20,6 +20,7 @@ class _EditNameScreenState extends State<EditNameScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton:  Padding(
           padding: const EdgeInsets.only(bottom: 15),
@@ -37,7 +38,7 @@ class _EditNameScreenState extends State<EditNameScreen> {
                 borderRadius: BorderRadius.circular(23),
               ),
               child: Center(
-                child: Text("Save",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
+                child: Text("Save",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
                   color:isEdit?Colors.white:AppColors.black6,),),
               ),
             ),

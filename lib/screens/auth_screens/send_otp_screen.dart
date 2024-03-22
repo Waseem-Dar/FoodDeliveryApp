@@ -4,6 +4,7 @@ import 'package:food_app/widgets/text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
+import '../../main.dart';
 import '../../widgets/user_widgets.dart';
 
 class SendOTPScreen extends StatefulWidget {
@@ -21,6 +22,7 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal:41),
@@ -28,7 +30,7 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
               children: [
                 SizedBox(
                   // color: Colors.red,
-                    height: 330,
+                    height: mq.height *.4,
                     child: Center(child: Text("LOGO",style: GoogleFonts.poppins(
                       fontSize:64,fontWeight:FontWeight.w800,color:AppColors.mainColor,),))),
                 Text("Forgot Password?",style: GoogleFonts.poppins(fontSize:32,fontWeight:FontWeight.w600,color:Colors.black,),),

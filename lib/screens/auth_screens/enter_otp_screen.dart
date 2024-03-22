@@ -5,6 +5,7 @@ import 'package:food_app/screens/auth_screens/new_password_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:otp_text_field/otp_field.dart';
 import '../../config/app_colors.dart';
+import '../../main.dart';
 import '../../widgets/user_widgets.dart';
 
 class EnterOTPScreen extends StatefulWidget {
@@ -51,13 +52,14 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 27),
             child: Column(
               children: [
                 SizedBox(
-                  height: 330,
+                  height: mq.height *.4,
                   child: Center(
                     child: Text("LOGO", style: GoogleFonts.poppins(fontSize: 64, fontWeight: FontWeight.w800, color: AppColors.mainColor),
                     ),

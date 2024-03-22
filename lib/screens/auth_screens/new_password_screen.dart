@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
+import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/text_field.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -23,6 +24,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -32,7 +34,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                 children: [
                   SizedBox(
                     // color: Colors.red,
-                      height: 330,
+                      height: mq.height *.4,
                       child: Center(child: Text("LOGO",style: GoogleFonts.poppins(fontSize:64,fontWeight:FontWeight.w800,color:AppColors.mainColor,),))),
                   SizedBox(
                     // color: Colors.teal,
@@ -62,7 +64,9 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                         ),
                         InkWell(
                           borderRadius: BorderRadius.circular(23),
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
+                          },
                           child: Container(
                             width: 285,
                             height: 46,

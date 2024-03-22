@@ -26,6 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        backgroundColor: Colors.white,
         body: SingleChildScrollView(
           child: Center(
             child: Padding(
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   SizedBox(
                     // color: Colors.red,
-                      height: 300,
+                      height: mq.height *.4,
                       child: Center(child: Text("LOGO",style: GoogleFonts.poppins(fontSize:64,fontWeight:FontWeight.w800,color:AppColors.mainColor,),))),
                   SizedBox(
                     // color: Colors.teal,

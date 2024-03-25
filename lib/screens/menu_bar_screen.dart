@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
+import 'package:food_app/screens/cart_screen.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/profile_screens/profile_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';
@@ -49,12 +50,14 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
                 subtitle: Text("Islamabad, Pakistan",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.black6),),
               ),
               UserWidgets.tileWidget("assets/images/user-icon.png", "View Profile", () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ProfileScreen(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const ProfileScreen(),));
               },17),
               UserWidgets.tileWidget("assets/images/fav-icon.png", "Favourites", () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => FavoriteScreen(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const FavoriteScreen(),));
               },20),
-              UserWidgets.tileWidget("assets/images/cart-icon.png", "My Cart", () {},22),
+              UserWidgets.tileWidget("assets/images/cart-icon.png", "My Cart", () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen(),));
+              },22),
               UserWidgets.tileWidget("assets/images/current-l-icon.png", "Nearby", () {},21),
               Divider(color: AppColors.white1,height: 15,endIndent: 25,indent: 30 ,thickness: 2,),
               UserWidgets.tileWidget("assets/images/offer-icon.png", "Vouchers & Offers", () {},26),
@@ -66,7 +69,6 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
               UserWidgets.tileWidget("assets/images/service-icon.png", "Terms of Service", () {},23),
               Divider(color: AppColors.white1,height:15,endIndent: 25,indent: 30 ,thickness: 2,),
               UserWidgets.tileWidget("assets/images/logOut-icon.png", "Log out", () {},18),
-
             ],
           ),
         ),

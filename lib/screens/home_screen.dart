@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
@@ -24,13 +25,11 @@ bool isSearch = false;
 class _HomeScreenState extends State<HomeScreen> {
   final ScrollController _scrollController = ScrollController();
 
-
       @override
       void initState() {
         super.initState();
         _scrollController.addListener(_scrollListener);
       }
-
 
   @override
   void dispose() {
@@ -39,7 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void _scrollListener() {
-    if (_scrollController.position.pixels > 100) {
+    if (_scrollController.position.pixels > 80) {
       setState(() {
         isSearch = false;
       });
@@ -49,25 +48,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
     return GestureDetector(
-
       onTap: () => FocusScope.of(context).unfocus(),
-      onVerticalDragUpdate: (details) {
-        if (details.primaryDelta! < 0) {
-
-          setState(() {
-            isSearch = false;
-          });
-        } else if (details.primaryDelta! > 0) {// Scrolling down
-          setState(() {
-            isSearch = true;
-          });
-        }
-      },
       child: Scaffold(
       body: CustomScrollView(
         slivers: [
           SliverAppBar(
+            pinned: true,
+            backgroundColor: AppColors.mainColor,
+            expandedHeight: 60,
             collapsedHeight: 60,
+            centerTitle: true,
             leading: Padding(
               padding: const EdgeInsets.only(left: 20),
               child: InkWell(
@@ -85,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            centerTitle: true,
+
             title: Column(
               children: [
                 Text("Location:",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.white6,),),
@@ -143,13 +133,10 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
 
             ],
-            pinned: true,
-            backgroundColor: AppColors.mainColor,
-            expandedHeight: 60,
           ),
           SliverFillRemaining(
             child: SingleChildScrollView(
-              // controller: _scrollController,
+              controller: isSearch? _scrollController :null,
               child: Column(
                 children: [
                   Padding(
@@ -182,7 +169,7 @@ class _HomeScreenState extends State<HomeScreen> {
                              labelStyle: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w500,
                                  color:_selectedChoice == choice?Colors.white:Colors.black),
                              label: SizedBox(
-                                 width: 65,
+                                 width: 98,
                                  child: Center(child: Text(choice))),
                              selected: _selectedChoice == choice,
                            onSelected: (selected) {
@@ -260,43 +247,6 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
-
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 0,vertical: 0),
-                    child: Stack(
-                      children: [
-                         SizedBox(
-                            height: 120,
-                            child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(horizontal: 23),
-                              itemCount:AppList.deliciousFoodList.length,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                String name = AppList.deliciousFoodList[index]["name"];
-                                String image = AppList.deliciousFoodList[index]["image"];
-                                return DeliciousFoodCard(name: name, image: image, onTap: (){});
-                              },),
-                          ),
-                        SizedBox(
-                          height: 120,
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: Row(
-                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                ImageIcon(const AssetImage("assets/images/arrow-left.png"),size: 15,color: AppColors.black6,),
-                                ImageIcon(const AssetImage("assets/images/arrow-right.png"),size: 15,color: AppColors.black6,),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-
-
-
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30,25,15,15),
                     child: Row(

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:food_app/config/app_list.dart';
+import 'package:food_app/widgets/cards/fav_food_card.dart';
 import 'package:food_app/widgets/cards/fav_restaurants_card.dart';
 import 'package:google_fonts/google_fonts.dart';
 import '../../config/app_colors.dart';
@@ -56,7 +57,6 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
             borderRadius: BorderRadius.circular(23),
             onTap: () {
               Navigator.pop(context);
-
             },
             child: Container(
               width: 285,
@@ -146,7 +146,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
 
                   isSelected1[0]?
                         AppList.favRestaurantsList.isEmpty?SizedBox(
-                            height: mq.height * .6,
+                            height: mq.height * .7,
                             child:Center(child: Text("No Favourite Restaurants",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),))
                         ):                    //listView padding
                   ListView.builder(
@@ -162,17 +162,29 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                       double rating = AppList.favRestaurantsList[index]["rating"];
                     return Padding(
                       padding: const EdgeInsets.symmetric(vertical: 10),
-                      child: FavRestaurantsCard(image: image, name: name, address: address, details: details, rating: rating),
+                      child: FavRestaurantsCard(image: image, name: name, address: address, details: details, rating: rating, onTap: () {}, onTapFav: () {},),
                     );
                   },):
-                  SizedBox(
-                      height: mq.height * .6,
+                  AppList.favFoodList.isEmpty?SizedBox(
+                      height: mq.height * .7,
                       child:Center(child: Text("No Favourite Foods",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),))
-                  )
-
-
-
-
+                  ) 
+                    :GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2,mainAxisExtent: 168,
+                       crossAxisSpacing: 8,mainAxisSpacing: 8),
+                      itemCount: AppList.favFoodList.length,
+                      padding: const EdgeInsets.only(bottom: 70),
+                      itemBuilder: (context, index) {
+                        String name = AppList.favFoodList[index]["name"];
+                        int price = AppList.favFoodList[index]["price"];
+                        String details = AppList.favFoodList[index]["details"];
+                        String image = AppList.favFoodList[index]["image"];
+                        double rating = AppList.favFoodList[index]["rating"];
+                        return FavoriteFoodCard(name: name, details: details, image: image, price: price,
+                          rating: rating, onTap: (){}, onAdd: () {}, onTapFav: () {},);
+                      },)
                 ],
               ),
             ),

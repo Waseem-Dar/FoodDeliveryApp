@@ -55,6 +55,14 @@ class AppList{
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder.","price":520,"rating":3.8},
     {"name":"Spicy Chicken Karahi","image":"assets/images/karahi-1.png","details":"Savor the sizzle of our signature Spicy Chicken Karahi.","price":500,"rating":3.5},
   ];
+  static List<Map<String,dynamic>> cartSimilarItemList = [
+    {"image":"assets/images/burger-5.png","details":"Juicy Burger with sauce of your own choice ","price":570,"oldPrice":950,"rating":3.6},
+    {"image":"assets/images/burger-6.png","details":"Juicy Burger with sauce of your own choice ","price":600,"oldPrice":999,"rating":2.5},
+    {"image":"assets/images/burger-4.png","details":"Juicy Burger with sauce of your own choice ","price":650,"oldPrice":1099,"rating":4.8},
+    {"image":"assets/images/burger-5.png","details":"Juicy Burger with sauce of your own choice ","price":570,"oldPrice":950,"rating":3.6},
+    {"image":"assets/images/burger-6.png","details":"Juicy Burger with sauce of your own choice ","price":600,"oldPrice":999,"rating":2.5},
+    {"image":"assets/images/burger-4.png","details":"Juicy Burger with sauce of your own choice ","price":650,"oldPrice":1099,"rating":4.8},
+  ];
 
   static List<Map<String,dynamic>> dealList = [
     {"image":"assets/images/deal-1.png"},

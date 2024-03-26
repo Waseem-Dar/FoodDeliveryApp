@@ -97,7 +97,7 @@ class UserWidgets{
               obscuringCharacter: "●",
               controller: controller,
               obscureText: isPassword,
-              style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
+              style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color:isPassword?AppColors.black6:AppColors.mainColor ),
               decoration: InputDecoration(
                 contentPadding: const EdgeInsets.only(right: 5),
                 focusedBorder: OutlineInputBorder(
@@ -151,6 +151,38 @@ class UserWidgets{
         ],
       ),
     );
+  }
+
+
+  static Widget voucherTextField(TextEditingController controller,VoidCallback onChange, bool isFill){
+    return Expanded(
+        child: SizedBox(
+          height:40,
+          child: TextFormField(
+            controller: controller,
+            style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
+            onChanged: (value) {
+              onChange();
+            },
+            decoration: InputDecoration(
+              hintText: "Enter Voucher Code",
+              hintStyle: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w400, color:AppColors.black3 ),
+              contentPadding: const EdgeInsets.only(right: 5),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(23),
+                borderSide: BorderSide(width: 1, color: AppColors.mainColor),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(23),
+                borderSide: BorderSide(width: 1, color: isFill ? AppColors.mainColor : Colors.black.withOpacity(0.25)),
+              ),
+              prefixIcon: Padding(
+                padding: const EdgeInsets.all(7),
+                child: ImageIcon(const AssetImage('assets/images/offer-icon.png'), size: 18, color: isFill ? AppColors.mainColor : AppColors.black3),
+              ),
+            ),
+          ),
+        ));
   }
 
 

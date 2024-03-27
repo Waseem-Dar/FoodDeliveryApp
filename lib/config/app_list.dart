@@ -30,11 +30,11 @@ class AppList{
     {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
   ];
- static List<Map<String,dynamic>> myCartList = [
-    {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
-    {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
-    {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":570},
-    {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","info":"Ground beef, tomato sauce, cheddar cheese, chili powder","favorite":false,"price":620},
+  static List<Map<String,dynamic>> myCartList = [
+    {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder","isSelected":false,"price":570,"count":1},
+    {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder","isSelected":false,"price":620,"count":1},
+    {"name":"Big Spicy Cheese Burger","image":"assets/images/burger-2.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder","isSelected":false,"price":570,"count":1},
+    {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder","isSelected":false,"price":620,"count":1},
   ];
 
   static List<Map<String,dynamic>> favRestaurantsList = [

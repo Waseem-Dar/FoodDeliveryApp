@@ -19,8 +19,8 @@ class FavoriteScreen extends StatefulWidget {
 
 TextEditingController emailController = TextEditingController(text:"LoremIpsum123@gmail.com");
 
-List<bool> isSelected1 = [true];
-List<bool> isSelected2 = [false];
+List<bool> restaurants = [true];
+List<bool> food = [false];
 class _FavoriteScreenState extends State<FavoriteScreen> {
   @override
   Widget build(BuildContext context) {
@@ -29,7 +29,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  isSelected1[0]?
+        floatingActionButton:  restaurants[0]?
         Padding(
           padding: const EdgeInsets.only(bottom: 15),
           child: InkWell(
@@ -96,13 +96,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         color: Colors.black,
                         fillColor: AppColors.mainColor,
                         borderRadius: BorderRadius.circular(15),
-                        isSelected: isSelected1,
+                        isSelected: restaurants,
                         constraints: const BoxConstraints(),
                         onPressed: (int index) {
                           setState(() {
-                            if (!isSelected1[index]) {
-                              isSelected1[index] = true;
-                              isSelected2[0] = false;
+                            if (!restaurants[index]) {
+                              restaurants[index] = true;
+                              food[0] = false;
                             }
                           });
                         },
@@ -122,13 +122,13 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                         color: Colors.black,
                         fillColor: AppColors.mainColor,
                         borderRadius: BorderRadius.circular(15),
-                        isSelected: isSelected2,
+                        isSelected: food,
                         constraints: const BoxConstraints(),
                         onPressed: (int index) {
                           setState(() {
-                            if (!isSelected2[index]) {
-                              isSelected2[index] = true;
-                              isSelected1[0] = false;
+                            if (!food[index]) {
+                              food[index] = true;
+                              restaurants[0] = false;
                             }
                           });
                         },
@@ -144,7 +144,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
                   ),
                   const SizedBox(height:20),
 
-                  isSelected1[0]?
+                  restaurants[0]?
                         AppList.favRestaurantsList.isEmpty?SizedBox(
                             height: mq.height * .7,
                             child:Center(child: Text("No Favourite Restaurants",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),))

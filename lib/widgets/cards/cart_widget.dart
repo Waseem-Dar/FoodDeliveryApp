@@ -6,7 +6,7 @@ import 'package:food_app/config/app_list.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
-import '../../screens/cart_screen.dart';
+import '../../screens/cart_screens/cart_screen.dart';
 
 class CartWidget extends StatefulWidget {
   final String name;
@@ -99,7 +99,7 @@ class _CartWidgetState extends State<CartWidget> {
                                 // color:AppColors.red,
                                 child: IconButton(
                                     onPressed: (){
-                                        AppList.myCartList[widget.index]["count"]++;
+                                      AppList.myCartList[widget.index]["count"]++;
                                       widget.onChanged();
                                     },
                                     padding: EdgeInsets.zero,

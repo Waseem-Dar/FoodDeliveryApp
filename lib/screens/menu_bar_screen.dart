@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
-import 'package:food_app/screens/cart_screen.dart';
+import 'package:food_app/screens/cart_screens/cart_screen.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/profile_screens/profile_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';

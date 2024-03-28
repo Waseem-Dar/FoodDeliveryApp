@@ -5,14 +5,15 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:food_app/config/app_list.dart';
+import 'package:food_app/screens/cart_screens/ckek_out_screen.dart';
 import 'package:food_app/widgets/cards/cart_similar_item_Widget.dart';
 import 'package:food_app/widgets/cards/cart_widget.dart';
 import 'package:food_app/widgets/text_field.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import '../config/app_colors.dart';
-import '../main.dart';
-import '../widgets/user_widgets.dart';
+import '../../config/app_colors.dart';
+import '../../main.dart';
+import '../../widgets/user_widgets.dart';
 
 class CartScreen extends StatefulWidget {
   const CartScreen({super.key});
@@ -24,9 +25,25 @@ bool selectAll = false;
 bool isFill = false;
 int subTotal = 0;
 int totalCharges = 0;
+int selectTotal = 0;
 TextEditingController voucherController = TextEditingController();
 
+
+
 class _CartScreenState extends State<CartScreen> {
+
+    void getTotal(){
+      subTotal = 0;
+      totalCharges = 0;
+      selectTotal = 0;
+      for (var item in AppList.myCartList) {
+        if (item["isSelected"]) {
+          selectTotal += 1;
+          subTotal += (item["price"] as int) * (item["count"] as int);
+          totalCharges = subTotal;
+        }
+      }
+    }
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -78,6 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                                     for (int i = 0; i < AppList.myCartList.length; i++) {
                                       AppList.myCartList[i]["isSelected"] = value;
                                     }
+                                    getTotal();
                                   });
                               },),
                               const SizedBox(width: 10,),
@@ -101,15 +119,12 @@ class _CartScreenState extends State<CartScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: CartWidget(name: name, image: image, details: details, price: price, count: count, isSelected: isSelected, index: index,onChanged: () {
                               setState(() {
-                                for (var item in AppList.myCartList) {
-                                  if (item["isSelected"]) { 
-                                    subTotal += (item["price"] as int) * (item["count"] as int);
-                                    // totalCharges = subTotal;
-                                  }
-                                }
-                                if (!AppList.myCartList.any((item) => item["isSelected"])) {
-                                  subTotal = 0;
-                                }
+                                // log(AppList.myCartList[1]["isSelected"].toString() );
+                                // AppList.myCartList[index]["isSelected"] = value;
+                               getTotal();
+                                // if (!AppList.myCartList.any((item) => item["isSelected"])) {
+                                //   subTotal = 0;
+                                // }
                                 // AppList.myCartList[index]["isSelected"] = value;
                               });
                             },),
@@ -221,7 +236,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                       Divider(color: AppColors.white1,thickness: 1,indent: 20,endIndent: 30,height: 0,),
                       Padding(
-                        padding: const EdgeInsets.fromLTRB(38,10,44,15),
+                        padding: const EdgeInsets.fromLTRB(38,10,44,13),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -233,7 +248,9 @@ class _CartScreenState extends State<CartScreen> {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 15),
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen(),));
+                          },
                           child: Container(
                             width: 285,
                             height: 46,
@@ -242,7 +259,7 @@ class _CartScreenState extends State<CartScreen> {
                               borderRadius: BorderRadius.circular(23),
                             ),
                             child: Center(
-                              child: Text("Check Out ( 1 )",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+                              child: Text("Check Out ( $selectTotal )",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
                                   color:Colors.white),),
                             ),
                           ),

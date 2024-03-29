@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../config/app_colors.dart';
+import '../main.dart';
 
 class UserWidgets{
 
@@ -183,6 +184,32 @@ class UserWidgets{
             ),
           ),
         ));
+  }
+
+  static Widget toggleButton(bool value,String icon,String text1,String text2,VoidCallback onTap){
+    return InkWell(
+      onTap:onTap,
+      child: Container(
+        width: mq.width/2-36,
+        height: 66,
+        decoration: BoxDecoration(
+            color:value?AppColors.mainColor: Colors.white,
+            borderRadius: BorderRadius.circular(10),
+            boxShadow: [BoxShadow(
+                color: Colors.black.withOpacity(0.1),offset: const Offset(0, 4),blurRadius:11.199999809265137
+
+            )]
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            ImageIcon( AssetImage(icon),size: 29,color: value?Colors.white:AppColors.mainColor ,),
+            Text(text1,style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:value?Colors.white:Colors.black)),
+            Text(text2,style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w400,color:value?Colors.white:AppColors.black6)),
+          ],
+        ),
+      ),
+    );
   }
 
 

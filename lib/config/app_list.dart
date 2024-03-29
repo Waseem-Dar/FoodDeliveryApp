@@ -1,5 +1,7 @@
 
 
+import 'package:food_app/config/app_colors.dart';
+
 class AppList{
 
 
@@ -37,6 +39,14 @@ class AppList{
     {"name":"Mc Crispy Burger","image":"assets/images/burger-3.png","details":"Ground beef, tomato sauce, cheddar cheese, chili powder","isSelected":false,"price":620,"count":1},
   ];
 
+  static List<Map<String,dynamic>> voucherList = [
+    {"date":"19 Mar 2024","percent":25,"orderPrice":5000,"bgColor":AppColors.mainColor,},
+    {"date":"19 Mar 2024","percent":10,"orderPrice":15000,"bgColor":AppColors.green,},
+    {"date":"19 Mar 2024","percent":10,"orderPrice":10000,"bgColor":AppColors.pink,},
+    {"date":"19 Mar 2024","percent":25,"orderPrice":5000,"bgColor":AppColors.mainColor,},
+    {"date":"19 Mar 2024","percent":10,"orderPrice":15000,"bgColor":AppColors.green,},
+    {"date":"19 Mar 2024","percent":10,"orderPrice":10000,"bgColor":AppColors.pink,},
+  ];
   static List<Map<String,dynamic>> favRestaurantsList = [
     {"name":"Desi Tarrka","image":"assets/images/fav-1.png","details":"Experience the vibrant tastes of our authentic Desi restaurant,  where every dish tells a story of tradition and flavor fusion.","address":"Bahria Town ph 4","rating":4.8},
     {"name":"Karahi Point","image":"assets/images/fav-2.png","details":"Indulge in a fiery symphony of flavors at our spicy haven.","address":"Giga Mall, Rawalpindi","rating":3.5},

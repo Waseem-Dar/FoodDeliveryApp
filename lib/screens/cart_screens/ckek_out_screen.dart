@@ -150,68 +150,87 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                           width: double.infinity,
                           child: Text("Payment Methods:",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),textAlign: TextAlign.left,)),
                       Padding(
-                        padding: const EdgeInsets.only(top: 15,right: 14,left: 4),
+                        padding: const EdgeInsets.fromLTRB( 4,15, 14, 30),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            InkWell(
-                              onTap:(){
-                                setState(() {
-                                  cash = !cash;
-                                });
-                              },
-                              child: Container(
-                                width: mq.width/2-36,
-                                height: 66,
-                                decoration: BoxDecoration(
-                                  color:cash?AppColors.mainColor: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),offset: const Offset(0, 4),blurRadius:11.199999809265137
 
-                                    )]
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const ImageIcon(AssetImage("assets/images/cash-on-icon.png"),size: 29,),
-                                    Text("Cash on delivery",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:Colors.black)),
-                                    Text("Pay when you receive order",style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w400,color:AppColors.black6)),
-                                  ],
-                                ),
-                              ),
-                            ),
+                            UserWidgets.toggleButton(cash,"assets/images/cash-on-icon.png" ,"Cash on delivery","Pay when you receive order",() {
+                              setState(() {
+                                if (!cash) {
+                                  cash = true;
+                                  online = false;
+                                }
+                              });
+                            },),
                             const SizedBox(width: 10),
-                            InkWell(
-                              onTap:(){},
-                              child: Container(
-                                width: mq.width/2-36,
-                                height: 66,
-                                decoration: BoxDecoration(
-                                  color: Colors.white,
-                                    borderRadius: BorderRadius.circular(10),
-                                    boxShadow: [BoxShadow(
-                                        color: Colors.black.withOpacity(0.1),offset: const Offset(0, 4),blurRadius:11.199999809265137
-
-                                    )]
-                                ),
-                                child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    const ImageIcon(AssetImage("assets/images/online-pay-icon.png"),size: 29,),
-                                    Text("Online Payment",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:Colors.black)),
-                                    Text("Select Options",style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w400,color:AppColors.black6)),
-                                  ],
-                                ),
-                              ),
+                            UserWidgets.toggleButton(online,"assets/images/online-pay-icon.png" ,"Online Payment","Select Options",() {
+                                  setState(() {
+                                  if (!online) {
+                                    online = true;
+                                    cash = false;
+                                  }
+                                  });
+                            },)
+                          ],
+                        ),
+                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          child: Text("Order Summary:",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),textAlign: TextAlign.left,)),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(20,20,10,5),
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Total Items",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.black6),),
+                                Text("( 2 )",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.mainColor),)
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Subtotal",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.black6),),
+                                Text("Rs. 570",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.mainColor),)
+                              ],
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text("Delivery Charges",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.black6),),
+                                Container(
+                                    width: 50,
+                                    height: 15,
+                                    decoration: BoxDecoration(
+                                        color: AppColors.mainColor.withOpacity(0.1),
+                                        borderRadius: BorderRadius.circular(9)
+                                    ),
+                                    child: Center(child: Text("Free",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:AppColors.mainColor),)))
+                              ],
                             ),
                           ],
                         ),
                       ),
+                      Divider(color: AppColors.white1,thickness: 1,),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20,right: 10),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text("Total Charges:",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),),
+                            Text("Rs. 570",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w600,color:AppColors.mainColor),)
+                          ],
+                        ),
+                      ),
+
                     ],
                   ),
+                ),
+                const SizedBox(
+                  height: 115,
                 )
-
 
               ],
             ),
@@ -221,7 +240,45 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
             child: Container(
               width: double.infinity,
               height: 104,
-              color: Colors.red,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                boxShadow: [BoxShadow(
+                  color: Colors.black.withOpacity(0.09),offset: const Offset(0, -1),blurRadius:16.200000762939453
+                )]
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(left: 40,right: 30),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Total Charges:",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:AppColors.black6),),
+                        Text("Rs. 570",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w600,color:AppColors.mainColor),)
+                      ],
+                    ),
+                  ),InkWell(
+                    borderRadius: BorderRadius.circular(23),
+                    onTap: () {
+                      Navigator.pop(context);
+                    },
+                    child: Container(
+                      width: 285,
+                      height: 46,
+                      decoration: BoxDecoration(
+                        color:AppColors.mainColor,
+                        borderRadius: BorderRadius.circular(23),
+                      ),
+                      child: Center(
+                        child: Text("Place Order",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+                          color:Colors.white)),
+                      ),
+                    ),
+                  ),
+
+                ],
+              ),
             ),
           )
         ],

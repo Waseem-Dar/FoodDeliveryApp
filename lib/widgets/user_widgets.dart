@@ -212,5 +212,66 @@ class UserWidgets{
     );
   }
 
+  static Widget voucherBanner(String image,int percentage){
+    return Stack(
+      children: [
+        Container(
+          width: double.infinity,
+          height: 118,
+          decoration:  BoxDecoration(
+              borderRadius: BorderRadius.circular(10),
+              image:  DecorationImage(image: AssetImage(image),fit: BoxFit.cover)
+          ),
+          child: Center(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  height: 16,
+                  width: 8,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topRight: Radius.circular(8),bottomRight: Radius.circular(8))
+                  ),
+                ),
+                Container(
+                  height: 16,
+                  width: 8,
+                  decoration: const BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.only(topLeft: Radius.circular(8),bottomLeft: Radius.circular(8))
+                  ),
+                )
+              ],
+            ),
+          ),
+        ),
+        Container(
+          height: 44,
+          width: 44,
+          margin: const EdgeInsets.only(left: 11,top:6 ),
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(25),
+            color: Colors.white,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: const EdgeInsets.only(right: 12,),
+                child: Text("Upto",style: GoogleFonts.poppins(fontSize:6,fontWeight:FontWeight.w400,color:AppColors.mainColor)),
+              ),
+              Text("$percentage%",style: GoogleFonts.poppins(fontSize:15,fontWeight:FontWeight.w600,color:AppColors.mainColor,height:1,)),
+              Padding(
+                padding: const EdgeInsets.only(left: 15),
+                child: Text("Off",style: GoogleFonts.poppins(fontSize:6,fontWeight:FontWeight.w400,color:AppColors.mainColor)),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
 
 }

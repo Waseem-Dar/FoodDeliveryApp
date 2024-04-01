@@ -32,7 +32,7 @@ class _VouchersScreenState extends State<VouchersScreen> {
                     Navigator.pop(context);
                   },),
                   const SizedBox(height: 6,),
-                  Text("Check Out",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
+                  Text("Vouchers & Offers",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
                   Divider(color: AppColors.white1,thickness: 2,),
                   const SizedBox(height:20),
                   SizedBox(
@@ -63,7 +63,7 @@ class _VouchersScreenState extends State<VouchersScreen> {
               padding: const EdgeInsets.symmetric(horizontal: 25),
               child: Column(
                 children: [
-                  SizedBox(height: 30,),
+                  const SizedBox(height: 30,),
                   Text("Indulge your taste buds with our exclusive offers!",style: GoogleFonts.poppins(
                       fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),) ,
                   Padding(
@@ -73,20 +73,15 @@ class _VouchersScreenState extends State<VouchersScreen> {
                   ) ,
                   ListView.builder(
                     shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
+                    physics: const NeverScrollableScrollPhysics(),
                     padding: EdgeInsets.zero,
-                    itemCount: 5,
+                    itemCount: AppList.voucherBannerList.length,
                     itemBuilder: (context, index) {
+                      String image = AppList.voucherBannerList[index]["image"];
+                      int percentage = AppList.voucherBannerList[index]["percentage"];
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 9,vertical: 10),
-                      child: Container(
-                        width: double.infinity,
-                        height: 118,
-                        decoration:  BoxDecoration(
-                          color: Colors.red,
-                          borderRadius: BorderRadius.circular(10)
-                        ),
-                      ),
+                      child: UserWidgets.voucherBanner(image,percentage)
                     );
                   },)
                 ],

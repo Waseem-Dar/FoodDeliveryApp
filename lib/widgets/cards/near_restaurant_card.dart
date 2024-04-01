@@ -4,16 +4,15 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
 
-class FavRestaurantsCard extends StatelessWidget {
-  final String image;
+class NearRestaurantCard extends StatelessWidget {
   final String name;
-  final String address;
+  final String image;
   final String details;
+  final String address;
   final double rating;
+  final bool isOpen;
   final VoidCallback onTap;
-  final VoidCallback onTapFav;
-
-  const FavRestaurantsCard({super.key, required this.image, required this.name, required this.address, required this.details, required this.rating, required this.onTap, required this.onTapFav});
+  const NearRestaurantCard({super.key, required this.name, required this.image, required this.details, required this.address, required this.rating, required this.isOpen, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +20,8 @@ class FavRestaurantsCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        padding: const EdgeInsets.fromLTRB(22, 14, 22, 9),
+        height: 207,
+        padding: const EdgeInsets.fromLTRB(22, 14, 22, 8),
         decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(20),
@@ -34,28 +34,20 @@ class FavRestaurantsCard extends StatelessWidget {
               width: double.infinity,
               padding: const EdgeInsets.only(top: 5,left: 8),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(image: AssetImage(image),fit:BoxFit.cover)
+                  borderRadius: BorderRadius.circular(10),
+                  image:  DecorationImage(image: AssetImage(image),fit:BoxFit.fill)
               ),
               child: Align(
                 alignment: Alignment.topLeft,
-                child: InkWell(
-                  onTap: onTapFav,
-                  child: Container(
+                child: Container(
                     height: 20,
-                    width: 20,
+                    width: 46,
                     padding: const EdgeInsets.all(5),
                     decoration: BoxDecoration(
-                        color: Colors.white,
-                        borderRadius: BorderRadius.circular(20),
-                        boxShadow: [
-                          BoxShadow(
-                            color: Colors.black.withOpacity(0.11), offset: const Offset(-2, 2), blurRadius:6.900000095367432,
-                          )
-                        ]
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(20),
                     ),
-                    child: ImageIcon(const AssetImage("assets/images/fav-icon.png"),size: 8,color: AppColors.mainColor,),
-                  ),
+                    child:Center(child: Text(isOpen?"Open":"Closed",style: GoogleFonts.poppins(fontSize:8,fontWeight:FontWeight.w600,color:AppColors.mainColor,)))
                 ),
               ),
             ),
@@ -72,7 +64,8 @@ class FavRestaurantsCard extends StatelessWidget {
                     ],
                   ),
                   const SizedBox(height: 3,),
-                  Text(details,style: GoogleFonts.poppins(fontSize:9,fontWeight:FontWeight.w400,color:AppColors.black6,),maxLines: 3,overflow: TextOverflow.ellipsis,textAlign: TextAlign.justify,),
+                  Text(details,style: GoogleFonts.poppins(
+                    fontSize:9,fontWeight:FontWeight.w400,color:AppColors.black6,),textAlign: TextAlign.justify,maxLines: 2,overflow: TextOverflow.ellipsis,),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: [

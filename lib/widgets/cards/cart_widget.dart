@@ -37,8 +37,8 @@ class _CartWidgetState extends State<CartWidget> {
           value: widget.isSelected,
           onChanged: (value) {
             setState(() {
-              widget.onChanged();
               AppList.myCartList[widget.index]["isSelected"] = value;
+              widget.onChanged();
             });
           },),
         Expanded(
@@ -52,9 +52,9 @@ class _CartWidgetState extends State<CartWidget> {
                     color: Colors.black.withOpacity(0.1),offset: const Offset(0, 4),blurRadius: 11.199999809265137)]
             ),
             child: Row(
-              // mainAxisAlignment: MainAxisAlignment.center,
+
               children: [
-                Image.asset(widget.image),
+                Image.asset(widget.image,width: 70,height: 70,),
                 const SizedBox(width: 15,),
                 Expanded(
                   child: Column(

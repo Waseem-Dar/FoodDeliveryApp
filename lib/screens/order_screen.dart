@@ -26,9 +26,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
           child: InkWell(
             borderRadius: BorderRadius.circular(23),
             onTap: () {
-              Navigator.pop(context);
-
-            },
+              Navigator.pop(context);},
             child: Container(
               width: 285,
               height: 46,
@@ -63,7 +61,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
             )
                 :Column(
               children: [
-                const SizedBox(height:20),
+                const SizedBox(height:30),
                 Container(
                     width: double.infinity,
                     margin: const EdgeInsets.only(left: 38),

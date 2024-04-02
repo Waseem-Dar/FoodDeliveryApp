@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
+import 'package:food_app/screens/about_screen.dart';
 import 'package:food_app/screens/cart_screens/cart_screen.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/invite_friends_screen.dart';
 import 'package:food_app/screens/nearBy_screen.dart';
 import 'package:food_app/screens/order_screen.dart';
 import 'package:food_app/screens/profile_screens/profile_screen.dart';
+import 'package:food_app/screens/privacy_screen.dart';
+import 'package:food_app/screens/terms_screen.dart';
 import 'package:food_app/screens/voucher_offer_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -76,9 +79,15 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
               UserWidgets.tileWidget("assets/images/invite-icon.png", "Invite Friends", () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const InviteFriendsScreen(),));
               },20),  //icon missing
-              UserWidgets.tileWidget("assets/images/about-icon.png", "About Us", () {},19),
-              UserWidgets.tileWidget("assets/images/privacy-icon.png", "Privacy Policy", () {},23),
-              UserWidgets.tileWidget("assets/images/service-icon.png", "Terms of Service", () {},23),
+              UserWidgets.tileWidget("assets/images/about-icon.png", "About Us", () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AboutScreen(),));
+              },19),
+              UserWidgets.tileWidget("assets/images/privacy-icon.png", "Privacy Policy", () {
+                Navigator.push(context,  MaterialPageRoute(builder: (context) => const PrivacyScreen(),));
+              },23),
+              UserWidgets.tileWidget("assets/images/service-icon.png", "Terms of Service", () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const TermsScreen(),));
+              },23),
               Divider(color: AppColors.white1,height:15,endIndent: 25,indent: 30 ,thickness: 2,),
               UserWidgets.tileWidget("assets/images/logOut-icon.png", "Log out", () {},18),
             ],

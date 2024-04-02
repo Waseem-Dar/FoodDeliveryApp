@@ -75,7 +75,7 @@ class _CartScreenState extends State<CartScreen> {
                       ),
                     ):Column(
                       children: [
-                        const SizedBox(height:20),
+                        const SizedBox(height:30),
                         Text("You have added ${AppList.myCartList.length} items to the cart!",style: GoogleFonts.poppins(fontWeight:FontWeight.w500,fontSize:14,
                             color:Colors.black)),
                         const SizedBox(height:10),

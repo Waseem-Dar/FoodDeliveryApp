@@ -122,6 +122,35 @@ class UserWidgets{
     );
   }
 
+  static Widget inviteTextField(TextEditingController controller,VoidCallback onTap) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB( 40,17,42,25 ),
+      child: SizedBox(
+        height: 46,
+        child: TextFormField(
+          readOnly: true,
+          textAlignVertical: TextAlignVertical.center,
+          textAlign: TextAlign.center,
+          controller: controller,
+          style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
+          decoration: InputDecoration(
+              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+              focusedBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(23),
+                borderSide: BorderSide(width: 1, color: AppColors.mainColor),
+              ),
+              enabledBorder: OutlineInputBorder(
+                borderRadius: BorderRadius.circular(23),
+                borderSide: BorderSide(width: 1, color: AppColors.mainColor),
+              ),
+              suffixIcon: IconButton(onPressed: onTap, icon: ImageIcon(const AssetImage("assets/images/copy-icon.png"), size: 21, color: AppColors.mainColor))
+          ),
+        ),
+      ),
+    );
+  }
+
+
   static Widget profileTextField1(TextEditingController controller,String label,VoidCallback onTap,VoidCallback onChange) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -272,6 +301,50 @@ class UserWidgets{
       ],
     );
   }
+  static Widget aboutIconButton(String icon,VoidCallback onTap){
+    return  InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(15),
+        child: Padding(
+          padding: const EdgeInsets.all(2),
+          child: ImageIcon( AssetImage(icon),color: AppColors.mainColor,size: 24,),
+        ));
+  }
 
+
+  static Widget heading1(String text){
+    return SizedBox(
+        width: double.infinity,
+        child: Text(text,style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w600,color:AppColors.mainColor),textAlign: TextAlign.left,),);
+  }
+
+  static Widget detailsText(String text,bool about){
+    return Padding(
+      padding: about? const EdgeInsets.symmetric(vertical: 8):const EdgeInsets.only(bottom: 10),
+      child: Text(text,style: GoogleFonts.poppins(fontSize:12,fontWeight:FontWeight.w400,color:AppColors.black6),textAlign: TextAlign.justify,),
+    );
+  }
+  static Widget heading2(String text){
+    return SizedBox(
+      width: double.infinity,
+      child: Text(text,style: GoogleFonts.poppins(fontSize:12,fontWeight:FontWeight.w500,color:AppColors.mainColor),textAlign: TextAlign.left,),);
+  }
+  static Widget headingAndDetails(String heading,String details){
+    return Column(
+      children: [
+        heading2(heading),
+        detailsText(details, false)
+      ],
+    );
+  }
+
+  static Widget termsScreenOptionText(String text){
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [ Text("  \u2022  ",style: TextStyle(color: AppColors.mainColor),),
+        Expanded(child: SizedBox(
+          child: Text(text,
+            style: GoogleFonts.poppins(fontSize: 12,fontWeight: FontWeight.w400,color:  AppColors.mainColor),textAlign: TextAlign.justify,),),),],);
+  }
 
 }

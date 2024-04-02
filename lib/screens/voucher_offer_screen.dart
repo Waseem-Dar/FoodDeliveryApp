@@ -34,7 +34,7 @@ class _VouchersScreenState extends State<VouchersScreen> {
                   const SizedBox(height: 6,),
                   Text("Vouchers & Offers",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
                   Divider(color: AppColors.white1,thickness: 2,),
-                  const SizedBox(height:20),
+                  const SizedBox(height:30),
                   SizedBox(
                       width: double.infinity,
                       child: Text("Claim Vouchers",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),textAlign: TextAlign.left,)),

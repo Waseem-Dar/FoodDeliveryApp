@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/config/constant.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
@@ -27,7 +28,7 @@ class _BurgerCardState extends State<BurgerCard> {
       child: Container(
         width: 189,
         height: 193,
-        padding: EdgeInsets.all(12),
+        padding: const EdgeInsets.all(12),
         margin: const EdgeInsets.only(right:6),
         decoration: BoxDecoration(
             color: AppColors.whiteGrey,
@@ -35,7 +36,6 @@ class _BurgerCardState extends State<BurgerCard> {
             border: Border.all(color: AppColors.black6,width: 0.5)
         ),
         child: Column(
-          // crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             SizedBox(
@@ -63,7 +63,11 @@ class _BurgerCardState extends State<BurgerCard> {
                             setState(() {
                               AppList.popularBurgersList[widget.index]["favorite"] =
                               !AppList.popularBurgersList[widget.index]["favorite"];
-                              // log(AppList.popularBurgersLIst[index]["favorite"]);
+                              if(AppList.popularBurgersList[widget.index]["favorite"]){
+                                Constant.showSnackBar(context, "Added to favourites", "assets/images/fav-icon.png");
+                              }else{
+                                Constant.showSnackBar(context, "Removed from favourites", "assets/images/fav-outline.png");
+                              }
                             });
                           }, icon: ImageIcon( AssetImage(AppList.popularBurgersList[widget.index]["favorite"]
                           ? "assets/images/fav-icon.png"
@@ -71,10 +75,12 @@ class _BurgerCardState extends State<BurgerCard> {
                   const SizedBox(width: 3),
                   SizedBox(
                       width: 20,
-                      height: 20,
+                      height: 20, 
                       child: IconButton(
                           padding: EdgeInsets.zero,
-                          onPressed: (){}, icon: ImageIcon(const AssetImage("assets/images/circle-add-icon.png"),size: 19,color: AppColors.mainColor,))),
+                          onPressed: (){
+                            Constant.showSnackBar(context, "Added to Cart", "assets/images/cart-fill-icon.png");
+                          }, icon: ImageIcon(const AssetImage("assets/images/circle-add-icon.png"),size: 19,color: AppColors.mainColor,))),
                 ],
               ),
             )
@@ -82,6 +88,6 @@ class _BurgerCardState extends State<BurgerCard> {
           ],
         ),
       ),
-    );;
+    );
   }
 }

@@ -5,6 +5,7 @@ import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
 import 'package:food_app/screens/menu_bar_screen.dart';
+import 'package:food_app/screens/notification_screen.dart';
 import 'package:food_app/widgets/cards/delicious_food_card.dart';
 import 'package:food_app/widgets/cards/desi_food_card.dart';
 import 'package:food_app/widgets/cards/popular_card_widget.dart';
@@ -76,12 +77,17 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
 
-            title: Column(
-              children: [
-                Text("Location:",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.white6,),),
-                const SizedBox(height: 5,),
-                Text("Islamabad, Pakistan",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:Colors.white,),)
-              ],
+            title: InkWell(
+              onTap: (){
+                showBottomSheet();
+              },
+              child: Column(
+                children: [
+                  Text("Location:",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.white6,),),
+                  const SizedBox(height: 5,),
+                  Text("Islamabad, Pakistan",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:Colors.white,),)
+                ],
+              ),
             ),
 
             bottom:isSearch?PreferredSize(preferredSize: const Size(double.infinity, 80), child: Column(
@@ -104,7 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: InkWell(
                   borderRadius: BorderRadius.circular(15),
                   splashColor: Colors.transparent,
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NotificationScreen(),));
+                  },
                   child: SizedBox(
                     width: 25,
                     height: 25,
@@ -336,7 +344,6 @@ class _HomeScreenState extends State<HomeScreen> {
                             height: 111,
                             margin: const EdgeInsets.only(right: 6),
                             decoration: BoxDecoration(
-                              // color: Colors.red,
                               borderRadius: BorderRadius.circular(10),
                               image: DecorationImage(image: AssetImage(image),fit: BoxFit.cover),
                             ),
@@ -382,5 +389,43 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       ),
     );
+  }
+  void showBottomSheet(){
+        showModalBottomSheet(
+          shape: const RoundedRectangleBorder(borderRadius:BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50))),
+            backgroundColor: Colors.white,
+            context: context,
+            builder: (_){
+          return SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+              child: Column(
+                children:  [
+                  Image.asset("assets/images/bottom-line.png",width: 52,),
+                  const SizedBox(height: 8,),
+                  ListTile(
+                    onTap: () {},
+                    dense: true,
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    leading:  ImageIcon(const AssetImage("assets/images/direction-icon.png"),size: 26,color: AppColors.mainColor, ),
+                    title: Text("Use my Current Location",style: GoogleFonts.poppins(
+                      fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
+                  ),
+                   Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,),
+                   //ListView.builder implement
+                   ListTile(
+                     onTap: () {},
+                     dense: true,
+                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                    leading:  Icon(Icons.add,size: 26,color: AppColors.mainColor,),
+                    title: Text("Use my Current Location",style: GoogleFonts.poppins(
+                      fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
+                  ),
+
+                ],
+              ),
+            ),
+          );
+        });
   }
 }

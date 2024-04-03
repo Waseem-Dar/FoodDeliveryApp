@@ -75,7 +75,7 @@ class _BurgerCardState extends State<BurgerCard> {
                   const SizedBox(width: 3),
                   SizedBox(
                       width: 20,
-                      height: 20, 
+                      height: 20,
                       child: IconButton(
                           padding: EdgeInsets.zero,
                           onPressed: (){

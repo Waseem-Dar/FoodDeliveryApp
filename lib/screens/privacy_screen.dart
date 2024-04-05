@@ -11,6 +11,7 @@ class PrivacyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child:Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),

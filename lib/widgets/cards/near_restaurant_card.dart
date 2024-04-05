@@ -52,7 +52,7 @@ class NearRestaurantCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.only(left: 15,right: 9,top: 9),
+              padding: const EdgeInsets.only(left: 15,right: 9,top: 5),
               child: Column(
                 children: [
                   Row(

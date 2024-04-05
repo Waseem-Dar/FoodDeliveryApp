@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
+import 'package:food_app/screens/location_screens/select_location.dart';
 import 'package:food_app/screens/menu_bar_screen.dart';
 import 'package:food_app/screens/notification_screen.dart';
 import 'package:food_app/widgets/cards/delicious_food_card.dart';
@@ -414,11 +415,14 @@ class _HomeScreenState extends State<HomeScreen> {
                    Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,),
                    //ListView.builder implement
                    ListTile(
-                     onTap: () {},
+                     onTap: () {
+                       Navigator.pop(context);
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectLocationScreen(),));
+                     },
                      dense: true,
                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                     leading:  Icon(Icons.add,size: 26,color: AppColors.mainColor,),
-                    title: Text("Use my Current Location",style: GoogleFonts.poppins(
+                    title: Text("Add a new Location",style: GoogleFonts.poppins(
                       fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
                   ),
 

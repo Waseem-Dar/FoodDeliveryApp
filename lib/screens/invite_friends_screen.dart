@@ -63,7 +63,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                     ],
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(right: 6,bottom: 4),
+                    padding: const EdgeInsets.only(right: 6),
                     child: Text("Terms & Conditions apply*",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:Colors.white),),
                   ),
                 ],

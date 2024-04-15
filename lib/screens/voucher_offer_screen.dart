@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_list.dart';
 import 'package:food_app/widgets/cards/voucher-card.dart';

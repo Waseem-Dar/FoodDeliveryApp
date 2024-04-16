@@ -113,7 +113,7 @@ class UserWidgets{
                   padding: const EdgeInsets.fromLTRB(22, 14, 14, 14),
                   child: ImageIcon(AssetImage(prefixIcon), size: 18, color: AppColors.mainColor),
                 ),
-                suffixIcon: IconButton(onPressed: onTap, icon: ImageIcon(const AssetImage("assets/images/edit-profile-icon.png"), size: 21, color: AppColors.mainColor))
+                suffixIcon: IconButton(onPressed: onTap, icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"), size: 21, color: AppColors.mainColor))
               ),
             ),
           ),
@@ -151,7 +151,7 @@ class UserWidgets{
   }
 
 
-  static Widget profileTextField1(TextEditingController controller,String label,VoidCallback onTap,VoidCallback onChange) {
+  static Widget profileTextField1(TextEditingController controller,String label,VoidCallback onChange) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20),
       child: Column(
@@ -345,6 +345,21 @@ class UserWidgets{
         Expanded(child: SizedBox(
           child: Text(text,
             style: GoogleFonts.poppins(fontSize: 12,fontWeight: FontWeight.w400,color:  AppColors.mainColor),textAlign: TextAlign.justify,),),),],);
+  }
+
+  static Widget currentLocationButton(VoidCallback onTap){
+    return Padding(
+      padding: const EdgeInsets.only(right: 15),
+      child: IconButton(
+        onPressed: onTap,
+        style: ElevatedButton.styleFrom(
+          minimumSize: const Size(46, 46),
+          backgroundColor: Colors.white,
+          elevation: 8,
+          shadowColor: Colors.black,
+        ),
+        icon: ImageIcon(const AssetImage("assets/images/current-location.png"),color: AppColors.mainColor,size: 22,),),
+    );
   }
 
 }

@@ -20,7 +20,7 @@ class _SelectLocationScreenState extends State<SelectLocationScreen> {
           Container(
               height: double.infinity,
               width: double.infinity,
-              child: AddLocationMap())
+              child: const AddLocationMap())
         ],
       ),
     );

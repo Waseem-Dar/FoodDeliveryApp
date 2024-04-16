@@ -59,9 +59,9 @@ class _EditNameScreenState extends State<EditNameScreen> {
                   Text("Edit Username",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
                   Divider(color: AppColors.white1,thickness: 2,),
                   const SizedBox(height: 40,),
-                  UserWidgets.profileTextField1(firstNameController, "First Name", () {},() => setState(() => isEdit = true,)),
+                  UserWidgets.profileTextField1(firstNameController, "First Name",() => setState(() => isEdit = true,)),
                   const SizedBox(height: 10,),
-                  UserWidgets.profileTextField1(lastNameController, "First Name", () {},() => setState(() => isEdit = true,)),
+                  UserWidgets.profileTextField1(lastNameController, "First Name", () => setState(() => isEdit = true,)),
 
 
                 ],

@@ -34,7 +34,7 @@ class _OrdersScreenState extends State<OrdersScreen> {
                 borderRadius: BorderRadius.circular(23),
               ),
               child: Center(
-                child: Text("Explore & order now ",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+                child: Text("Explore & order now",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
                     color:Colors.white),),
               ),
             ),

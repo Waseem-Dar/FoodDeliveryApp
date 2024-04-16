@@ -7,6 +7,7 @@ import 'package:food_app/config/app_list.dart';
 import 'package:food_app/screens/location_screens/select_location.dart';
 import 'package:food_app/screens/menu_bar_screen.dart';
 import 'package:food_app/screens/notification_screen.dart';
+import 'package:food_app/widgets/add_location_widget.dart';
 import 'package:food_app/widgets/cards/delicious_food_card.dart';
 import 'package:food_app/widgets/cards/desi_food_card.dart';
 import 'package:food_app/widgets/cards/popular_card_widget.dart';
@@ -86,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   Text("Location:",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:AppColors.white6,),),
                   const SizedBox(height: 5,),
-                  Text("Islamabad, Pakistan",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:Colors.white,),)
+                  Text("Select your Location here",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w500,color:Colors.white,),)
                 ],
               ),
             ),
@@ -413,11 +414,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
                   ),
                    Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,),
-                   //ListView.builder implement
+                   ListView.builder(itemBuilder: (context, index) {
+                     return ListTile();
+                   },),
+
                    ListTile(
                      onTap: () {
                        Navigator.pop(context);
-                       Navigator.push(context, MaterialPageRoute(builder: (context) => const SelectLocationScreen(),));
+                       Navigator.push(context, MaterialPageRoute(builder: (context) => const AddLocationMap(),));
                      },
                      dense: true,
                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),

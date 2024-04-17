@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/main.dart';
+import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/address_textFeild.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -9,7 +10,8 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 import '../../config/app_colors.dart';
-import '../../widgets/add_location_widget.dart';
+import '../../config/constructor.dart';
+import 'select_location_map_screen.dart';
 
 class NewAddressScreen extends StatefulWidget {
   const NewAddressScreen({super.key});
@@ -19,12 +21,11 @@ class NewAddressScreen extends StatefulWidget {
 }
 TextEditingController addressController = TextEditingController();
 TextEditingController streetController = TextEditingController();
-TextEditingController aDIController = TextEditingController();
+TextEditingController aIController = TextEditingController();
 class _NewAddressScreenState extends State<NewAddressScreen> {
   @override
   void initState() {
     super.initState();
-
   }
   final LatLng _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
   final Completer<GoogleMapController> _controller = Completer();
@@ -142,27 +143,37 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                               UserWidgets.textFieldLabel("Street/Apartment/Floor*"),
                               AddressTextFieldWidget(controller: streetController,max: false,),
                               const SizedBox(height: 15,),
-                              UserWidgets.textFieldLabel("Any Delivery Instructions"),
-                              AddressTextFieldWidget(controller: aDIController,max: true,),
+                              UserWidgets.textFieldLabel("Any Instructions"),
+                              AddressTextFieldWidget(controller: aIController,max: true,),
                               const SizedBox(height: 40,),
-                
-                
+
                               Padding(
                                 padding: const EdgeInsets.only(bottom: 15,top: 15),
                                 child: InkWell(
                                   borderRadius: BorderRadius.circular(23),
                                   onTap: () {
-                                    Navigator.pop(context);},
+                                    LocationDetails locationDetails = LocationDetails(
+                                        latitude: _markers.isNotEmpty?_markers.first.position.latitude:_initialCameraPosition.latitude,
+                                        longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
+                                        address: addressController.text,
+                                        street: streetController.text,
+                                        dInstructions: aIController.text);
+
+                                    addressController.clear();
+                                    streetController.clear();
+                                    aIController.clear();
+                                    Navigator.pop(context);
+                                    },
                                   child: Container(
                                     width: 285,
                                     height: 46,
                                     decoration: BoxDecoration(
-                                      color:addressController.text.isEmpty || streetController.text.isEmpty?AppColors.blackGrey:AppColors.mainColor,
+                                      color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.blackGrey:AppColors.mainColor,
                                       borderRadius: BorderRadius.circular(23),
                                     ),
                                     child: Center(
-                                      child: Text("Save & Continue",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                          color:addressController.text.isEmpty || streetController.text.isEmpty?AppColors.black6:Colors.white),),
+                                      child: Text("Add Location",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+                                          color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.black6:Colors.white),),
                                     ),
                                   ),
                                 ),

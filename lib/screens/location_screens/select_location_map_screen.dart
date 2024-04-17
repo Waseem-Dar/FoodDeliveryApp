@@ -7,7 +7,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
-import '../main.dart';
+import '../../main.dart';
 
 class AddLocationMap extends StatefulWidget {
   final void Function(LatLng)? onLocationSelected;
@@ -16,7 +16,7 @@ class AddLocationMap extends StatefulWidget {
   @override
   State<AddLocationMap> createState() => AddLocationMapState();
 }
-
+int _value = 0;
 class AddLocationMapState extends State<AddLocationMap> {
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
@@ -148,11 +148,28 @@ class AddLocationMapState extends State<AddLocationMap> {
                               return  Column(
                                 children: [
                                   ListTile(
+                                    horizontalTitleGap: 0,
+                                    contentPadding: EdgeInsets.zero,
                                     dense: true,
-                                    leading:  ImageIcon(const AssetImage("assets/images/location-icon.png"),size: 25,color: AppColors.mainColor,),
+                                    leading:  Radio(
+                                      activeColor: AppColors.mainColor,
+                                      fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
+                                        if (states.contains(MaterialState.selected)) {
+                                          return AppColors.mainColor;
+                                        } else {
+                                          return AppColors.mainColor;
+                                        }
+                                      }),
+                                      value: index,
+                                      groupValue: _value,
+                                      onChanged: (value) {
+                                      setState(() {
+                                        _value = value!;
+                                      });
+                                    },),
                                     title: Text("Bahria Town Ph 04",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor,)),
                                     subtitle: Text("Rawalpindi, Pakistan",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.black6,)),
-                                    trailing: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 25,color: AppColors.mainColor,),
+                                    trailing: IconButton(onPressed: (){}, icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 25,color: AppColors.mainColor,),),
                                   ),
                                   Divider(height: 0,thickness: 1,color: AppColors.white2,indent: 30,endIndent: 40,),
                                 ],
@@ -182,7 +199,7 @@ class AddLocationMapState extends State<AddLocationMap> {
                                   borderRadius: BorderRadius.circular(23),
                                 ),
                                 child: Center(
-                                  child: Text("Add address details",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+                                  child: Text("Continue",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
                                       color:Colors.white),),
                                 ),
                               ),

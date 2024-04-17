@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:food_app/widgets/add_location_widget.dart';
+import 'package:food_app/screens/location_screens/select_location_map_screen.dart';
 
 class SelectLocationScreen extends StatefulWidget {
   const SelectLocationScreen({super.key});

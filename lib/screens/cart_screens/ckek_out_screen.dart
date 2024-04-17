@@ -5,6 +5,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 import '../../config/app_colors.dart';
 import '../../main.dart';
+import '../../widgets/address_textFeild.dart';
 import '../../widgets/user_widgets.dart';
 
 class CheckOutScreen extends StatefulWidget {
@@ -15,6 +16,7 @@ class CheckOutScreen extends StatefulWidget {
 }
 bool cash = false;
 bool online = false;
+TextEditingController aDIController = TextEditingController();
 class _CheckOutScreenState extends State<CheckOutScreen> {
   @override
   Widget build(BuildContext context) {
@@ -157,8 +159,8 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
 
                             UserWidgets.toggleButton(cash,"assets/images/cash-on-icon.png" ,"Cash on delivery","Pay when you receive order",() {
                               setState(() {
-                                if (!cash) {
-                                  cash = true;
+                                cash = !cash;
+                                if (cash) {
                                   online = false;
                                 }
                               });
@@ -166,14 +168,21 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                             const SizedBox(width: 10),
                             UserWidgets.toggleButton(online,"assets/images/online-pay-icon.png" ,"Online Payment","Select Options",() {
                                   setState(() {
-                                  if (!online) {
-                                    online = true;
+                                    online = !online;
+                                  if (online) {
                                     cash = false;
                                   }
                                   });
                             },)
                           ],
                         ),
+                      ),
+                      SizedBox(
+                          width: double.infinity,
+                          child: Text("Any Delivery Instructions",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w500,color:Colors.black),textAlign: TextAlign.left,)),
+                      Padding(
+                        padding: const EdgeInsets.fromLTRB(5,10,15,10),
+                        child: AddressTextFieldWidget(controller: aDIController,max: true,),
                       ),
                       SizedBox(
                           width: double.infinity,

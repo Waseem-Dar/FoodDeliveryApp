@@ -27,8 +27,8 @@ class _AddressTextFieldWidgetState extends State<AddressTextFieldWidget> {
       height: widget.max?110:46,
       child: TextFormField(
         controller: widget.controller,
-         minLines: widget.max?6:1,
-         maxLines: widget.max?6:1,
+         minLines: widget.max?5:1,
+         maxLines: widget.max?5:1,
 
          style: GoogleFonts.poppins(fontSize: 14, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
         onChanged: (value) {

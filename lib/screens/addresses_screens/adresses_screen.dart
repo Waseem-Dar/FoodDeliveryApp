@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/addresses_screens/search_location_screen.dart';
+import 'package:food_app/widgets/cards/addresses_card_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/app_list.dart';
@@ -24,7 +27,8 @@ class _AddressesScreenState extends State<AddressesScreen> {
         child: InkWell(
           borderRadius: BorderRadius.circular(23),
           onTap: () {
-            Navigator.pop(context);},
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchLocationScreen(),));
+                  },
           child: Container(
             width: 285,
             height: 46,
@@ -33,7 +37,7 @@ class _AddressesScreenState extends State<AddressesScreen> {
               borderRadius: BorderRadius.circular(23),
             ),
             child: Center(
-              child: Text("Explore & order now ",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+              child: Text("Add new address",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
                   color:Colors.white),),
             ),
           ),
@@ -53,18 +57,25 @@ class _AddressesScreenState extends State<AddressesScreen> {
                   },),
                   const SizedBox(height: 6,),
                   Text("Your Addresses",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.black),),
-                  Divider(color: AppColors.white1,thickness: 2,),
+                  Divider(color: AppColors.white1,thickness: 2,endIndent: 25,indent: 20,),
                 ],
               ),
             ),
-            AppList.addressesList.isEmpty?SizedBox(
+            if (AppList.addressesList.isEmpty) SizedBox(
                 height: mq.height * .7,
                 child:Center(child: Text("No Addresses found",style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),))
-            ):ListView.builder(
+            ) else ListView.builder(
               shrinkWrap: true,
+              itemCount:AppList.addressesList.length,
               physics: const NeverScrollableScrollPhysics(),
+              padding: const EdgeInsets.only(top: 20,bottom: 70),
               itemBuilder: (context, index) {
-              return Container();
+                final double latitude = AppList.addressesList[index]["latitude"];
+                final double longitude =  AppList.addressesList[index]["longitude"];
+                final LatLng location =  LatLng(latitude, longitude);
+                final String title = AppList.addressesList[index]["title"];
+                final String subtitle = AppList.addressesList[index]["subTitle"];
+              return AddressesCard(location: location, title: title, subtitle: subtitle,);
             },),
           ],
         ),

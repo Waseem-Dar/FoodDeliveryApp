@@ -16,7 +16,7 @@ class UserWidgets{
     );
   }
 
-  static Widget homeSearchTextField( TextEditingController controller){
+  static Widget homeSearchTextField( TextEditingController controller,String hintText){
     return Container(
       height: 27,
       margin: const EdgeInsets.only(bottom: 15,top: 10),
@@ -30,7 +30,7 @@ class UserWidgets{
           contentPadding: const EdgeInsets.only(left: 15,),
           filled: true,
           fillColor: Colors.white,
-          hintText: "Search",
+          hintText: hintText,
           hintStyle: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w400,color:AppColors.black6),
           border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(15),

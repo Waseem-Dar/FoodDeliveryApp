@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
-import 'package:food_app/screens/location_screens/select_location.dart';
 import 'package:food_app/screens/menu_bar_screen.dart';
 import 'package:food_app/screens/notification_screen.dart';
 import 'package:food_app/screens/location_screens/select_location_map_screen.dart';
@@ -96,7 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
             bottom:isSearch?PreferredSize(preferredSize: const Size(double.infinity, 80), child: Column(
               children: [
                 Text("What would you like to eat?",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.white,),),
-                UserWidgets.homeSearchTextField(searchController)
+                UserWidgets.homeSearchTextField(searchController,"Search")
               ],
             )):null,
 

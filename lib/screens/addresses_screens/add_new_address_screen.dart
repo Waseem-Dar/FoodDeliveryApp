@@ -2,6 +2,7 @@ import 'dart:async';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/main.dart';
+import 'package:food_app/screens/addresses_screens/save_add_location_screen.dart';
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/address_textFeild.dart';
 import 'package:food_app/widgets/user_widgets.dart';
@@ -11,22 +12,22 @@ import 'package:location/location.dart';
 
 import '../../config/app_colors.dart';
 import '../../config/constructor.dart';
-import 'select_location_map_screen.dart';
 
-class NewAddressScreen extends StatefulWidget {
-  const NewAddressScreen({super.key});
+
+class AddNewAddressScreen extends StatefulWidget {
+  const AddNewAddressScreen({super.key});
 
   @override
-  State<NewAddressScreen> createState() => _NewAddressScreenState();
+  State<AddNewAddressScreen> createState() => _AddNewAddressScreenState();
 }
 TextEditingController addressController = TextEditingController();
 TextEditingController streetController = TextEditingController();
-TextEditingController aIController = TextEditingController();
-class _NewAddressScreenState extends State<NewAddressScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+TextEditingController nearLocationController = TextEditingController();
+class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
   final LatLng _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
@@ -128,13 +129,11 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                       width: double.infinity,
                       decoration: const BoxDecoration(
                         color: Colors.white,
-                        borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50)),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
                         child: Column(
                           children:  [
-                            Image.asset("assets/images/bottom-line.png",width: 52,),
                             const SizedBox(height: 70,),
                             UserWidgets.textFieldLabel("Address*"),
                             AddressTextFieldWidget(controller: addressController,max: false,),
@@ -142,9 +141,9 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                             UserWidgets.textFieldLabel("Street/Apartment/Floor*"),
                             AddressTextFieldWidget(controller: streetController,max: false,),
                             const SizedBox(height: 15,),
-                            UserWidgets.textFieldLabel("Any Instructions"),
-                            AddressTextFieldWidget(controller: aIController,max: true,),
-                            const SizedBox(height: 40,),
+                            UserWidgets.textFieldLabel("Near Locations (if any)"),
+                            AddressTextFieldWidget(controller: nearLocationController,max: false,),
+                            const SizedBox(height: 105,),
 
                             Padding(
                               padding: const EdgeInsets.only(bottom: 15,top: 15),
@@ -156,13 +155,14 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                                       longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
                                       address: addressController.text,
                                       street: streetController.text,
-                                      dInstructions: aIController.text);
+                                      dInstructions: nearLocationController.text);
 
                                   addressController.clear();
                                   streetController.clear();
-                                  aIController.clear();
-                                  Navigator.pop(context);
-                                  },
+                                  nearLocationController.clear();
+                                  // use pushReplacement to navigate
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const  SaveAddLocationScreen(),));
+                                },
                                 child: Container(
                                   width: 285,
                                   height: 46,

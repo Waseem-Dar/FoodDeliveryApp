@@ -21,7 +21,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen> {
   void initState() {
     super.initState();
   }
-  final LatLng _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
+  final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
 
@@ -142,7 +142,7 @@ class _SearchLocationScreenState extends State<SearchLocationScreen> {
                           Divider(thickness: 1,color: AppColors.white2,indent: 30,endIndent: 30,),
                           ListTile(
                             onTap: () {
-                              Navigator.pop(context);
+                              // Navigator.pop(context);
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const AddNewAddressScreen(),));
                             },
                             dense: true,

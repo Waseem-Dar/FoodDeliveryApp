@@ -28,7 +28,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   // void initState() {
   //   super.initState();
   // }
-  final LatLng _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
+  final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
 

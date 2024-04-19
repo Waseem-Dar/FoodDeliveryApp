@@ -1,12 +1,14 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:food_app/screens/location_screens/edit_location_screen.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
 import '../../config/app_colors.dart';
+import '../../config/app_list.dart';
 import '../../main.dart';
 
 class SaveAddLocationScreen extends StatefulWidget {
@@ -17,7 +19,7 @@ class SaveAddLocationScreen extends StatefulWidget {
 }
 
 class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
-  final LatLng _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
+  final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
 
@@ -120,11 +122,17 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                     children:  [
                       Image.asset("assets/images/bottom-line.png",width: 52,),
                       ListView.builder(
-                        itemCount: 0,
+                        itemCount: 1,
                         shrinkWrap: true,
                         padding: const EdgeInsets.only(top: 20,bottom: 30),
                         physics: const NeverScrollableScrollPhysics(),
                         itemBuilder: (context, index) {
+                          double latitude = AppList.addressesList[index]["latitude"];
+                          double longitude = AppList.addressesList[index]["longitude"];
+                          LatLng location = LatLng(latitude, longitude);
+                          String address = AppList.addressesList[index]["address"];
+                          String street = AppList.addressesList[index]["street"];
+                          String instruction = AppList.addressesList[index]["instruction"];
                         return Column(
                           children: [
                             ListTile(
@@ -135,7 +143,10 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                                 padding: const EdgeInsets.only(bottom: 5),
                                 child: Text("subtitle",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
                               ),
-                              trailing:IconButton(onPressed: (){},
+                              trailing:IconButton(onPressed: (){
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
+                                    location: location, address: address, street: street, instruction: instruction, index: index),));
+                              },
                                   icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),
                             ),
                             Divider(thickness: 1,color: AppColors.white2,indent: 40,endIndent: 50,height: 10,),

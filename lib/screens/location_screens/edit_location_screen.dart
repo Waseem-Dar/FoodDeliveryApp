@@ -13,20 +13,25 @@ import '../../config/app_colors.dart';
 import '../../config/constructor.dart';
 import 'select_location_map_screen.dart';
 
-class NewAddressScreen extends StatefulWidget {
-  const NewAddressScreen({super.key});
+class EditLocationScreen extends StatefulWidget {
+  final LatLng location;
+  final String address;
+  final String street;
+  final String instruction;
+  final int index;
+  const EditLocationScreen({super.key, required this.location, required this.address, required this.street, required this.instruction,required this.index});
 
   @override
-  State<NewAddressScreen> createState() => _NewAddressScreenState();
+  State<EditLocationScreen> createState() => _EditLocationScreenState();
 }
 TextEditingController addressController = TextEditingController();
 TextEditingController streetController = TextEditingController();
 TextEditingController aIController = TextEditingController();
-class _NewAddressScreenState extends State<NewAddressScreen> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class _EditLocationScreenState extends State<EditLocationScreen> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  // }
   final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
@@ -162,7 +167,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                                   streetController.clear();
                                   aIController.clear();
                                   Navigator.pop(context);
-                                  },
+                                },
                                 child: Container(
                                   width: 285,
                                   height: 46,

@@ -70,12 +70,22 @@ class _AddressesScreenState extends State<AddressesScreen> {
               physics: const NeverScrollableScrollPhysics(),
               padding: const EdgeInsets.only(top: 20,bottom: 70),
               itemBuilder: (context, index) {
-                final double latitude = AppList.addressesList[index]["latitude"];
-                final double longitude =  AppList.addressesList[index]["longitude"];
-                final LatLng location =  LatLng(latitude, longitude);
-                final String title = AppList.addressesList[index]["title"];
-                final String subtitle = AppList.addressesList[index]["subTitle"];
-              return AddressesCard(location: location, title: title, subtitle: subtitle,);
+                 double latitude = AppList.addressesList[index]["latitude"];
+                 double longitude =  AppList.addressesList[index]["longitude"];
+                 LatLng location =  LatLng(latitude, longitude);
+                 String address = AppList.addressesList[index]["address"];
+                 String street = AppList.addressesList[index]["street"];
+                 String instruction = AppList.addressesList[index]["instruction"];
+                // continue to design Dismissible widget
+              return Dismissible(
+                  key: Key(index.toString()),
+                  background: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: AppColors.red,
+                    ),
+                  ),
+                  child: AddressesCard(location: location, address: address, street: street,instruction: instruction,index: index,));
             },),
           ],
         ),

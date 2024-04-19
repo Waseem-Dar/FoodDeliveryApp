@@ -9,9 +9,11 @@ import 'package:food_app/screens/notification_screen.dart';
 import 'package:food_app/screens/location_screens/select_location_map_screen.dart';
 import 'package:food_app/widgets/cards/delicious_food_card.dart';
 import 'package:food_app/widgets/cards/desi_food_card.dart';
+import 'package:food_app/widgets/cards/location_selection_tile_widget.dart';
 import 'package:food_app/widgets/cards/popular_card_widget.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import '../main.dart';
 import '../widgets/cards/burger_card_widget.dart';
 
@@ -400,65 +402,60 @@ class _HomeScreenState extends State<HomeScreen> {
             builder: (_){
           return StatefulBuilder(
             builder: (BuildContext context, StateSetter setState) {
-              return SingleChildScrollView(
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
-                  child: Column(
-                    children:  [
-                      Image.asset("assets/images/bottom-line.png",width: 52,),
-                      const SizedBox(height: 8,),
-                      ListTile(
-                        onTap: () {},
-                        dense: true,
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        leading:  ImageIcon(const AssetImage("assets/images/direction-icon.png"),size: 26,color: AppColors.mainColor, ),
-                        title: Text("Use my Current Location",style: GoogleFonts.poppins(
-                          fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
-                      ),
-                       Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,),
-                      ListView.builder(
-                        itemCount: 2,
-                        physics:  const NeverScrollableScrollPhysics(),
-                        shrinkWrap: true,
-                        itemBuilder: (context, index) {
-                          return  Column(
-                            children: [
-                              ListTile(
-                                horizontalTitleGap: 0,
-                                contentPadding: EdgeInsets.zero,
-                                dense: true,
-                                leading:  Radio(
-                                  activeColor: AppColors.mainColor,
-                                  fillColor: MaterialStatePropertyAll(AppColors.mainColor),
-                                  value: index,
-                                  groupValue: _value,
-                                  onChanged: (value) {
-                                    setState(() {
-                                      _value = value!;
-                                    });
-                                  },),
-                                title: Text("Bahria Town Ph 04",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor,)),
-                                subtitle: Text("Rawalpindi, Pakistan",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.black6,)),
-                                trailing: IconButton(onPressed: (){}, icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 25,color: AppColors.mainColor,),),
-                              ),
-                              Divider(height: 0,thickness: 1,color: AppColors.white2,indent: 30,endIndent: 40,),
-                            ],
-                          );
-                        },),
+              return Container(
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius:BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50))
+                ),
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 10),
+                    child: Column(
+                      children:  [
+                        Image.asset("assets/images/bottom-line.png",width: 52,),
+                        const SizedBox(height: 8,),
+                        ListTile(
+                          onTap: () {},
+                          dense: true,
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                          leading:  ImageIcon(const AssetImage("assets/images/direction-icon.png"),size: 26,color: AppColors.mainColor, ),
+                          title: Text("Use my Current Location",style: GoogleFonts.poppins(
+                            fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
+                        ),
+                         Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,height: 0,),
+                        ListView.builder(
+                          itemCount: AppList.addressesList.length >= 2 ? 2 : AppList.addressesList.length,
+                          physics:  const NeverScrollableScrollPhysics(),
+                          shrinkWrap: true,
+                          itemBuilder: (context, index) {
+                            int lastIndex = AppList.addressesList.length - 1 - index;
+                            double latitude = AppList.addressesList[lastIndex]["latitude"];
+                            double longitude = AppList.addressesList[lastIndex]["longitude"];
+                            LatLng location = LatLng(latitude, longitude);
+                            String address = AppList.addressesList[lastIndex]["address"];
+                            String street = AppList.addressesList[lastIndex]["street"];
+                            String instruction = AppList.addressesList[lastIndex]["instruction"];
+                            return LocationSelectionTile(location: location, address: address, street: street, instruction: instruction.isNotEmpty?instruction:"",index: index, selectedValue: _value, onChanged: (value) {
+                              setState((){
+                                _value = value;
+                              });
+                            },) ;
+                          },),
 
-                       ListTile(
-                         onTap: () {
-                           Navigator.pop(context);
-                           Navigator.push(context, MaterialPageRoute(builder: (context) => const AddLocationMap(),));
-                         },
-                         dense: true,
-                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-                        leading:  Icon(Icons.add,size: 26,color: AppColors.mainColor,),
-                        title: Text("Add a new Location",style: GoogleFonts.poppins(
-                          fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
-                      ),
+                         ListTile(
+                           onTap: () {
+                             Navigator.pop(context);
+                             Navigator.push(context, MaterialPageRoute(builder: (context) => const AddLocationMap(),));
+                           },
+                           dense: true,
+                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+                          leading:  Icon(Icons.add,size: 26,color: AppColors.mainColor,),
+                          title: Text("Add a new Location",style: GoogleFonts.poppins(
+                            fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
+                        ),
 
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

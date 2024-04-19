@@ -2,11 +2,13 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/screens/location_screens/new_address_screen.dart';
+import 'package:food_app/widgets/cards/location_selection_tile_widget.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
+import '../../config/app_list.dart';
 import '../../main.dart';
 
 class AddLocationMap extends StatefulWidget {
@@ -19,18 +21,18 @@ class AddLocationMap extends StatefulWidget {
 int _value = 0;
 class AddLocationMapState extends State<AddLocationMap> {
   final Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> _markers = {};
-  late LatLng _initialCameraPosition;
-  static late LatLng _selectedLocation;
+  final Set<Marker> _markers = {};
+   final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
+  // static late LatLng _selectedLocation;
 
-  @override
-  void initState() {
-    super.initState();
-    _getCurrentLocation();
-    _initialCameraPosition = const LatLng(37.42796133580664, -122.085749655962);
-    _selectedLocation = _initialCameraPosition;
-
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+    // _getCurrentLocation();
+    // _initialCameraPosition = const LatLng(33.6687964,73.0742062);
+    // _selectedLocation = _initialCameraPosition;
+  //
+  // }
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
@@ -100,21 +102,21 @@ class AddLocationMapState extends State<AddLocationMap> {
               ),
               onMapCreated: _onMapCreated,
               markers: _markers,
-              onTap: (LatLng location) {
-                setState(() {
-                  // _selectedLocation = location;
-                  _markers = {
-                    Marker(
-                      markerId: const MarkerId('selectedLocation'),
-                      position: location,
-                    ),
-                  };
-
-                });
-                if (widget.onLocationSelected != null) {
-                  widget.onLocationSelected!(_selectedLocation);
-                }
-              },
+              // onTap: (LatLng location) {
+              //   setState(() {
+              //     // _selectedLocation = location;
+              //     _markers = {
+              //       Marker(
+              //         markerId: const MarkerId('selectedLocation'),
+              //         position: location,
+              //       ),
+              //     };
+              //
+              //   });
+              //   if (widget.onLocationSelected != null) {
+              //     widget.onLocationSelected!(_selectedLocation);
+              //   }
+              // },
               myLocationEnabled: true,
               myLocationButtonEnabled: false,
             ),
@@ -141,40 +143,24 @@ class AddLocationMapState extends State<AddLocationMap> {
                           Image.asset("assets/images/bottom-line.png",width: 52,),
                           const SizedBox(height: 8,),
                           ListView.builder(
-                            itemCount: 2,
-                            physics:  const NeverScrollableScrollPhysics(),
+                            itemCount: AppList.addressesList.length >= 2 ? 2 : AppList.addressesList.length,
+                            physics: const NeverScrollableScrollPhysics(),
                             shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return  Column(
-                                children: [
-                                  ListTile(
-                                    horizontalTitleGap: 0,
-                                    contentPadding: EdgeInsets.zero,
-                                    dense: true,
-                                    leading:  Radio(
-                                      activeColor: AppColors.mainColor,
-                                      fillColor: MaterialStateProperty.resolveWith<Color>((Set<MaterialState> states) {
-                                        if (states.contains(MaterialState.selected)) {
-                                          return AppColors.mainColor;
-                                        } else {
-                                          return AppColors.mainColor;
-                                        }
-                                      }),
-                                      value: index,
-                                      groupValue: _value,
-                                      onChanged: (value) {
-                                      setState(() {
-                                        _value = value!;
-                                      });
-                                    },),
-                                    title: Text("Bahria Town Ph 04",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor,)),
-                                    subtitle: Text("Rawalpindi, Pakistan",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.black6,)),
-                                    trailing: IconButton(onPressed: (){}, icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 25,color: AppColors.mainColor,),),
-                                  ),
-                                  Divider(height: 0,thickness: 1,color: AppColors.white2,indent: 30,endIndent: 40,),
-                                ],
-                              );
-                            },),
+                              int lastIndex = AppList.addressesList.length - 1 - index;
+                              double latitude = AppList.addressesList[lastIndex]["latitude"];
+                              double longitude = AppList.addressesList[lastIndex]["longitude"];
+                              LatLng location = LatLng(latitude, longitude);
+                              String address = AppList.addressesList[lastIndex]["address"];
+                              String street = AppList.addressesList[lastIndex]["street"];
+                              String  instruction = AppList.addressesList[lastIndex]["instruction"];
+                              return LocationSelectionTile(location: location, address: address, street: street,instruction: instruction.isNotEmpty?instruction:"", index: lastIndex, selectedValue: _value,onChanged: (value) {
+                                setState(() {
+                                  _value = value;
+                                });
+                              },);
+                            },
+                          ),
                           ListTile(
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const NewAddressScreen(),));

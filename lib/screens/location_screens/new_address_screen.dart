@@ -114,15 +114,17 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                 myLocationButtonEnabled: false,
               ),
             ),
+            Positioned(
+              right: 0,
+              top: 115,
+              child:  UserWidgets.currentLocationButton(() {_getCurrentLocation();}),),
             Align(
               alignment: Alignment.bottomCenter,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    UserWidgets.currentLocationButton(() {_getCurrentLocation();}),
                     const SizedBox(height: 20,),
                     Container(
                       width: double.infinity,
@@ -156,7 +158,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                                       longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
                                       address: addressController.text,
                                       street: streetController.text,
-                                      dInstructions: aIController.text);
+                                      instructions: aIController.text);
 
                                   addressController.clear();
                                   streetController.clear();

@@ -422,7 +422,7 @@ class _HomeScreenState extends State<HomeScreen> {
                           title: Text("Use my Current Location",style: GoogleFonts.poppins(
                             fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
                         ),
-                         Divider(thickness: 1,color: AppColors.white2,indent: 50,endIndent: 50,height: 0,),
+                         Divider(thickness: 1,color: AppColors.white2,indent: 30,endIndent: 30,height: 0,),
                         ListView.builder(
                           itemCount: AppList.addressesList.length >= 2 ? 2 : AppList.addressesList.length,
                           physics:  const NeverScrollableScrollPhysics(),
@@ -435,11 +435,36 @@ class _HomeScreenState extends State<HomeScreen> {
                             String address = AppList.addressesList[lastIndex]["address"];
                             String street = AppList.addressesList[lastIndex]["street"];
                             String instruction = AppList.addressesList[lastIndex]["instruction"];
-                            return LocationSelectionTile(location: location, address: address, street: street, instruction: instruction.isNotEmpty?instruction:"",index: index, selectedValue: _value, onChanged: (value) {
-                              setState((){
-                                _value = value;
-                              });
-                            },) ;
+                            return Dismissible(
+                              key: Key(index.toString()),
+                              direction: DismissDirection.endToStart,
+                              onDismissed: (direction) {
+                                // AppList.addressesList.removeAt(index);
+                              },
+                              background: Flexible(
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(10),
+                                    color: AppColors.red1,
+                                  ),
+                                  child: const Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    children: [
+                                      Padding(
+                                        padding: EdgeInsets.only(right: 20),
+                                        child: ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
+                                      )
+                                    ],
+                                  ),
+                                ),
+                              ),
+                              child: LocationSelectionTile(location: location, address: address, street: street, instruction: instruction.isNotEmpty?instruction:"",index: index, selectedValue: _value, onChanged: (value) {
+                                setState((){
+                                  _value = value;
+                                });
+                              },),
+                            ) ;
                           },),
 
                          ListTile(

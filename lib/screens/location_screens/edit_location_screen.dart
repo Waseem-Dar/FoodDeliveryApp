@@ -1,6 +1,8 @@
 import 'dart:async';
+import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:food_app/config/app_list.dart';
 import 'package:food_app/main.dart';
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/address_textFeild.dart';
@@ -8,10 +10,8 @@ import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-
 import '../../config/app_colors.dart';
 import '../../config/constructor.dart';
-import 'select_location_map_screen.dart';
 
 class EditLocationScreen extends StatefulWidget {
   final LatLng location;
@@ -24,17 +24,28 @@ class EditLocationScreen extends StatefulWidget {
   @override
   State<EditLocationScreen> createState() => _EditLocationScreenState();
 }
-TextEditingController addressController = TextEditingController();
-TextEditingController streetController = TextEditingController();
-TextEditingController aIController = TextEditingController();
 class _EditLocationScreenState extends State<EditLocationScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+
+    TextEditingController addressController = TextEditingController();
+    TextEditingController streetController = TextEditingController();
+    TextEditingController aIController = TextEditingController();
+    late Set<Marker> _markers = {};
+
+  @override
+  void initState() {
+    super.initState();
+    _markers = {
+      Marker(
+        markerId: const MarkerId('selectedLocation'),
+        position: widget.location,
+      ),
+    };
+    addressController.text = widget.address;
+    streetController.text = widget.street;
+    aIController.text = widget.instruction;
+  }
   final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
-  Set<Marker> _markers = {};
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
@@ -50,6 +61,16 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
         ),
       ),
     );
+  }
+  void _handleTap(LatLng tappedPoint) {
+    setState(() {
+      _markers = {
+        Marker(
+          markerId: const MarkerId('selectedLocation'),
+          position: tappedPoint,
+        ),
+      };
+    });
   }
 
   Future<void> _getCurrentLocation() async {
@@ -100,34 +121,27 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
                 zoomControlsEnabled: false,
                 mapType: MapType.normal,
                 initialCameraPosition: CameraPosition(
-                  target: _initialCameraPosition,
+                  target: widget.location,
                   zoom: 14.0,
                 ),
                 onMapCreated: _onMapCreated,
                 markers: _markers,
-                onTap: (LatLng location) {
-                  setState(() {
-                    _markers = {
-                      Marker(
-                        markerId: const MarkerId('selectedLocation'),
-                        position: location,
-                      ),
-                    };
-                  });
-                },
+                onTap: _handleTap,
                 myLocationEnabled: true,
                 myLocationButtonEnabled: false,
               ),
             ),
+            Positioned(
+              right: 0,
+              top: 115,
+              child:  UserWidgets.currentLocationButton(() {_getCurrentLocation();}),),
             Align(
               alignment: Alignment.bottomCenter,
               child: SingleChildScrollView(
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.end,
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    UserWidgets.currentLocationButton(() {_getCurrentLocation();}),
                     const SizedBox(height: 20,),
                     Container(
                       width: double.infinity,
@@ -161,7 +175,20 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
                                       longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
                                       address: addressController.text,
                                       street: streetController.text,
-                                      dInstructions: aIController.text);
+                                      instructions: aIController.text);
+                                  print(AppList.addressesList[widget.index]["address"]);
+
+                                  // Convert the LocationDetails object to a Map<String, dynamic>
+                                  Map<String, dynamic> locationMap = {
+                                    "latitude": locationDetails.latitude,
+                                    "longitude": locationDetails.longitude,
+                                    "address": locationDetails.address,
+                                    "street": locationDetails.street,
+                                    "instructions": locationDetails.instructions,
+                                  };
+
+                                  AppList.addressesList[widget.index]= locationMap;
+                                  print(AppList.addressesList[widget.index]["address"]);
 
                                   addressController.clear();
                                   streetController.clear();
@@ -195,4 +222,5 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
       ),
     );
   }
+
 }

@@ -16,32 +16,29 @@ class AddressesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-      child: Container(
-        height: 60,
-        width: double.infinity,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50),
-            boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1),offset: const Offset(0, 0),blurRadius: 11.2,spreadRadius: 1)]
-        ),
-        child:  Center(
-          child: ListTile(
-            dense: true,
-            contentPadding: const EdgeInsets.only(left: 20,right: 10,),
-            leading:  ImageIcon(const AssetImage("assets/images/location-icon.png"),size: 26,color: AppColors.mainColor,),
-            title: Text(address,style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor),),
-            subtitle: Padding(
-              padding: const EdgeInsets.only(bottom: 5),
-              child: Text(street,style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
-            ),
-            trailing:IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
-                  location: location, address: address, street: street, instruction: instruction, index: index),));
-            },
-                icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),
+    return Container(
+      height: 60,
+      width: double.infinity,
+      decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(50),
+          boxShadow: [BoxShadow(color: Colors.black.withOpacity(0.1),offset: const Offset(0, 0),blurRadius: 11.2,spreadRadius: 1)]
+      ),
+      child:  Center(
+        child: ListTile(
+          dense: true,
+          contentPadding: const EdgeInsets.only(left: 20,right: 10,),
+          leading:  ImageIcon(const AssetImage("assets/images/location-icon.png"),size: 26,color: AppColors.mainColor,),
+          title: Text(address,style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor),),
+          subtitle: Padding(
+            padding: const EdgeInsets.only(bottom: 5),
+            child: Text(street,style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
           ),
+          trailing:IconButton(onPressed: (){
+            Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
+                location: location, address: address, street: street, instruction: instruction, index: index),));
+          },
+              icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),
         ),
       ),
     );;

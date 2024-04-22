@@ -4,14 +4,14 @@
   final double longitude;
   final String address;
   final String street;
-  final String dInstructions;
+  final String instructions;
 
   LocationDetails({
   required this.latitude,
   required this.longitude,
   required this.address,
   required this.street,
-  required this.dInstructions,
+  required this.instructions,
   });
   }
 

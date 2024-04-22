@@ -127,7 +127,7 @@ class AppList{
   ];
 
   static List<Map<String, dynamic>> addressesList = [
-    // {"latitude":33.5311662,"longitude":73.1527292,"address":"DHA  Ph II","street":"Islamabad, Pakistan","instruction":"any instruction"},
+    {"latitude":33.5311662,"longitude":73.1527292,"address":"DHA  Ph II","street":"Islamabad, Pakistan","instruction":""},
     {"latitude":33.5511568,"longitude":73.0936603,"address":"Bahria Town Ph 04","street":"Rawalpindi, Pakistan","instruction":"any instruction"},
     {"latitude":33.6912565,"longitude":72.9978815,"address":"F10/2","street":"Islamabad, Pakistan","instruction":"any instruction"},
     {"latitude":33.6679415,"longitude":73.069495,"address":"I8 Markaz","street":"Islamabad, Pakistan","instruction":"any instruction"},

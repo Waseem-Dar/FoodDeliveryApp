@@ -1,9 +1,9 @@
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/screens/addresses_screens/search_location_screen.dart';
 import 'package:food_app/widgets/cards/addresses_card_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../../config/app_colors.dart';
 import '../../config/app_list.dart';
 import '../../main.dart';
@@ -76,16 +76,32 @@ class _AddressesScreenState extends State<AddressesScreen> {
                  String address = AppList.addressesList[index]["address"];
                  String street = AppList.addressesList[index]["street"];
                  String instruction = AppList.addressesList[index]["instruction"];
-                // continue to design Dismissible widget
-              return Dismissible(
-                  key: Key(index.toString()),
-                  background: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: AppColors.red,
+
+              return Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
+                child: Dismissible(
+                    key: Key(index.toString()),
+                    direction: DismissDirection.endToStart,
+                    onDismissed: (direction) {
+                      AppList.addressesList.removeAt(index);
+                    },
+                    background: Container(
+                      decoration: BoxDecoration(
+                        color: AppColors.red1,
+                      ),
+                      child: const Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: EdgeInsets.only(right: 20),
+                            child: ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
+                          )
+                        ],
+                      ),
                     ),
-                  ),
-                  child: AddressesCard(location: location, address: address, street: street,instruction: instruction,index: index,));
+                    child: AddressesCard(location: location, address: address, street: street,instruction: instruction.isNotEmpty?instruction:"",index: index,)),
+              );
             },),
           ],
         ),

@@ -4,6 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../config/app_colors.dart';
+import '../../screens/location_screens/edit_&_delete_location.dart';
 
 class LocationSelectionTile extends StatefulWidget {
   final LatLng location;
@@ -46,7 +47,7 @@ class _LocationSelectionTileState extends State<LocationSelectionTile> {
           subtitle: Text(widget.street, style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w400, color: AppColors.black6)),
           trailing: IconButton(
             onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
+              Navigator.push(context, MaterialPageRoute(builder: (context) => EditAndDeleteLocationScreen(
                   location: widget.location, address: widget.address, street: widget.street, instruction: widget.instruction!,index: widget.index,),));
             },
             icon: ImageIcon(

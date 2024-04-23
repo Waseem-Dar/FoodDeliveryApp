@@ -77,35 +77,44 @@ class _AddressesScreenState extends State<AddressesScreen> {
                  String street = AppList.addressesList[index]["street"];
                  String instruction = AppList.addressesList[index]["instruction"];
 
-              return Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 5),
-                child: Dismissible(
-                    key: Key(index.toString()),
-                    direction: DismissDirection.endToStart,
-                    onDismissed: (direction) {
-                      AppList.addressesList.removeAt(index);
-                    },
-                    background: Container(
-                      decoration: BoxDecoration(
-                        color: AppColors.red1,
-                      ),
-                      child: const Row(
-                        mainAxisAlignment: MainAxisAlignment.end,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: EdgeInsets.only(right: 20),
-                            child: ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
-                          )
-                        ],
-                      ),
-                    ),
-                    child: AddressesCard(location: location, address: address, street: street,instruction: instruction.isNotEmpty?instruction:"",index: index,)),
-              );
+              return AddressesCard(location: location, address: address, street: street,instruction: instruction.isNotEmpty?instruction:"",index: index,);
             },),
           ],
         ),
       ),
     );
+  }
+  void showDeleteDialog(BuildContext context,int index){
+    showDialog(context: context, builder: (_) => AlertDialog(
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(19)),
+      backgroundColor: Colors.white,
+      surfaceTintColor: Colors.white,
+      insetPadding: const EdgeInsets.symmetric(horizontal: 30),
+      contentPadding: const EdgeInsets.only( right: 24,left: 24,top: 24,bottom: 0),
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Text("Are you sure you want to remove this address/location?",
+            style: GoogleFonts.poppins(fontSize: 16,fontWeight: FontWeight.w400,color: Colors.black),textAlign: TextAlign.center,),
+          const SizedBox(height: 15,),
+          Divider(
+            height:1,
+            color: const Color(0xFF939393).withOpacity(0.29),
+          ),
+        ],
+      ),
+      actionsPadding:  EdgeInsets.zero,
+      actionsAlignment: MainAxisAlignment.spaceEvenly,
+      actions: [
+        TextButton(
+            onPressed: (){
+              Navigator.pop(context);
+            }, child: Text("Yes",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 15,color: AppColors.red),)),
+        SizedBox(height:50,child: VerticalDivider(color: const Color(0xFF939393).withOpacity(0.29),width: 1,endIndent: 15,)),
+        TextButton(onPressed: (){
+          Navigator.pop(context);
+        }, child: Text("No",style: GoogleFonts.poppins(fontWeight: FontWeight.w500,fontSize: 15,color: const Color(0xFF5C90DC)),))
+      ],
+    ));
   }
 }

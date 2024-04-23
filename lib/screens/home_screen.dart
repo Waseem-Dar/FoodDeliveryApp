@@ -435,36 +435,11 @@ class _HomeScreenState extends State<HomeScreen> {
                             String address = AppList.addressesList[lastIndex]["address"];
                             String street = AppList.addressesList[lastIndex]["street"];
                             String instruction = AppList.addressesList[lastIndex]["instruction"];
-                            return Dismissible(
-                              key: Key(index.toString()),
-                              direction: DismissDirection.endToStart,
-                              onDismissed: (direction) {
-                                // AppList.addressesList.removeAt(index);
-                              },
-                              background: Flexible(
-                                child: Container(
-                                  decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(10),
-                                    color: AppColors.red1,
-                                  ),
-                                  child: const Row(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.only(right: 20),
-                                        child: ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
-                                      )
-                                    ],
-                                  ),
-                                ),
-                              ),
-                              child: LocationSelectionTile(location: location, address: address, street: street, instruction: instruction.isNotEmpty?instruction:"",index: index, selectedValue: _value, onChanged: (value) {
-                                setState((){
-                                  _value = value;
-                                });
-                              },),
-                            ) ;
+                            return LocationSelectionTile(location: location, address: address, street: street, instruction: instruction.isNotEmpty?instruction:"",index: index, selectedValue: _value, onChanged: (value) {
+                              setState((){
+                                _value = value;
+                              });
+                            },) ;
                           },),
 
                          ListTile(

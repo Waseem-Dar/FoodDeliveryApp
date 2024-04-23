@@ -45,17 +45,6 @@ class _LocationSelectionTileState extends State<LocationSelectionTile> {
           ),
           title: Text(widget.address, style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600, color: AppColors.mainColor)),
           subtitle: Text(widget.street, style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w400, color: AppColors.black6)),
-          trailing: IconButton(
-            onPressed: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EditAndDeleteLocationScreen(
-                  location: widget.location, address: widget.address, street: widget.street, instruction: widget.instruction!,index: widget.index,),));
-            },
-            icon: ImageIcon(
-              const AssetImage("assets/images/edit-icon.png"),
-              size: 25,
-              color: AppColors.mainColor,
-            ),
-          ),
         ),
         Divider(height: 0, thickness: 1, color: AppColors.white2, indent: 30, endIndent: 40),
       ],

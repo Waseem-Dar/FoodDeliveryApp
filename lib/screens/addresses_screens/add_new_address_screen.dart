@@ -1,13 +1,14 @@
 import 'dart:async';
-import 'package:flutter/cupertino.dart';
+import 'dart:developer';
 import 'package:flutter/material.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:food_app/main.dart';
 import 'package:food_app/screens/addresses_screens/save_add_location_screen.dart';
-import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/address_textFeild.dart';
 import 'package:food_app/widgets/user_widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart' as deviceLocation;
 import 'package:location/location.dart';
 
 import '../../config/app_colors.dart';
@@ -24,14 +25,10 @@ TextEditingController addressController = TextEditingController();
 TextEditingController streetController = TextEditingController();
 TextEditingController nearLocationController = TextEditingController();
 class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
-  // @override
-  // void initState() {
-  //   super.initState();
-  // }
+
   final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
   final Completer<GoogleMapController> _controller = Completer();
   Set<Marker> _markers = {};
-
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
   }
@@ -49,7 +46,7 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
   }
 
   Future<void> _getCurrentLocation() async {
-    Location location = Location();
+    deviceLocation.Location location = deviceLocation.Location();
     bool serviceEnabled;
     PermissionStatus permissionGranted;
     LocationData? locationData;
@@ -73,6 +70,24 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
     locationData = await location.getLocation();
     _goToLocation(locationData);
   }
+  Future<String> getPlaceName(double latitude, double longitude) async {
+    try {
+      List<Placemark> placeMarks = await placemarkFromCoordinates(latitude, longitude);
+      if (placeMarks.isNotEmpty) {
+        Placemark placeMark = placeMarks[0];
+
+        String? street = placeMark.street;
+        String? subLocality = placeMark.subLocality;
+        String? city = placeMark.locality;
+        String? country = placeMark.country;
+        return "$street, $subLocality, $city, $country";
+      }
+    } catch (e) {
+      log('Error: $e');
+    }
+    return 'Place not found';
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -102,15 +117,20 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                 onMapCreated: _onMapCreated,
                 markers: _markers,
                 onTap: (LatLng location) {
-                  setState(() {
                     _markers = {
                       Marker(
                         markerId: const MarkerId('selectedLocation'),
                         position: location,
                       ),
                     };
+
+                  print('Selected Location: ${location.toString()}');
+                  getPlaceName(location.latitude, location.longitude).then((result) {
+                    log(result);
+                    addressController.text = result;
                   });
-                },
+                  setState(() {});
+                                },
                 myLocationEnabled: true,
                 myLocationButtonEnabled: false,
               ),

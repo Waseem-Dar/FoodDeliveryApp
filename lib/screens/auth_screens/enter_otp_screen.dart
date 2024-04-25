@@ -99,7 +99,6 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                     }else{
 
                     }
-                    print("otp changed $value");
                   },
                   onCompleted: (String value) {
                     if(value.isNotEmpty){
@@ -107,10 +106,9 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                         _change =true;
                       });
                     }
-                    print("otp  $value");
                   },),
                 Padding(
-                  padding: const EdgeInsets.only(left: 5,right: 5,top: 10),
+                  padding: const EdgeInsets.only(left: 10,right: 10,top: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children:  [
@@ -142,26 +140,10 @@ class _EnterOTPScreenState extends State<EnterOTPScreen> {
                   ),
                 ),
                 const SizedBox(height: 50,),
-                InkWell(
-                  borderRadius: BorderRadius.circular(23),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPasswordScreen(),));
-                  },
-                  child: Container(
-                    width: 285,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      color: _change? AppColors.mainColor : AppColors.whiteGrey,
-                      borderRadius: BorderRadius.circular(23),
-                    ),
-                    child: Center(
-                      child: Text("Next", style: GoogleFonts.poppins(fontWeight: FontWeight.w400, fontSize: 18,
-                          color: _change ? Colors.white : AppColors.black6,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
+                UserWidgets.mainButton("Next", _change? AppColors.mainColor : AppColors.whiteGrey, 18, _change ? Colors.white : AppColors.black6,
+                    20, () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const NewPasswordScreen(),));
+                    }),
               ],
             ),
           ),

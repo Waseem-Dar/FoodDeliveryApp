@@ -4,7 +4,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../config/app_colors.dart';
-import '../../screens/location_screens/edit_&_delete_location.dart';
+import '../../screens/location_screens/edit_location.dart';
 
 class LocationSelectionTile extends StatefulWidget {
   final LatLng location;

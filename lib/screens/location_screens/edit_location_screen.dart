@@ -13,18 +13,18 @@ import 'package:location/location.dart';
 import '../../config/app_colors.dart';
 import '../../config/constructor.dart';
 
-class EditLocationScreen extends StatefulWidget {
+class EditLocationScreen2 extends StatefulWidget {
   final LatLng location;
   final String address;
   final String street;
   final String instruction;
   final int index;
-  const EditLocationScreen({super.key, required this.location, required this.address, required this.street, required this.instruction,required this.index});
+  const EditLocationScreen2({super.key, required this.location, required this.address, required this.street, required this.instruction,required this.index});
 
   @override
-  State<EditLocationScreen> createState() => _EditLocationScreenState();
+  State<EditLocationScreen2> createState() => _EditLocationScreen2State();
 }
-class _EditLocationScreenState extends State<EditLocationScreen> {
+class _EditLocationScreen2State extends State<EditLocationScreen2> {
 
     TextEditingController addressController = TextEditingController();
     TextEditingController streetController = TextEditingController();

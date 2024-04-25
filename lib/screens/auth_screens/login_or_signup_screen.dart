@@ -5,6 +5,7 @@ import 'package:food_app/screens/auth_screens/login_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../main.dart';
+import '../../widgets/user_widgets.dart';
 
 class LoginOrSignUpScreen extends StatefulWidget {
   const LoginOrSignUpScreen({super.key});
@@ -27,11 +28,11 @@ class _LoginOrSignUpScreenState extends State<LoginOrSignUpScreen> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                     // color: Colors.red,
                     height: mq.height *.40,
                     child: Center(child: Text("LOGO",style: GoogleFonts.poppins(fontSize:64,fontWeight:FontWeight.w800,color:AppColors.mainColor,),))),
-                Container(
+                SizedBox(
                   // color: Colors.teal,
                   height: mq.height *.50,
                   child: Column(
@@ -47,35 +48,25 @@ class _LoginOrSignUpScreenState extends State<LoginOrSignUpScreen> {
                       ),
                       Column(
                         children: [
-                          InkWell(
-                            borderRadius: BorderRadius.circular(23),
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
-                            },
-                            child: Container(
-                              width: 285,
-                              height: 46,
-                              decoration: BoxDecoration(
-                                color: AppColors.mainColor,
-                                borderRadius: BorderRadius.circular(23),
+                          UserWidgets.mainButton("Log In", AppColors.mainColor, 18, Colors.white, 15, () {
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => const LoginScreen(),));
+                          }),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 15),
+                            child: InkWell(
+                              borderRadius: BorderRadius.circular(23),
+                              onTap: () {
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen(),));
+                              },
+                              child: Container(
+                                width: 285,
+                                height: 46,
+                                decoration: BoxDecoration(
+                                  border: Border.all(color: AppColors.mainColor,width: 1,),
+                                  borderRadius: BorderRadius.circular(23),
+                                ),
+                                child: Center(child: Text("Sign Up",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w400,color:AppColors.mainColor),),),
                               ),
-                              child: Center(child: Text("Log In",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w400,color:Colors.white),),),
-                            ),
-                          ),
-                          const SizedBox(height: 11,),
-                          InkWell(
-                            borderRadius: BorderRadius.circular(23),
-                            onTap: () {
-                              Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen(),));
-                            },
-                            child: Container(
-                              width: 285,
-                              height: 46,
-                              decoration: BoxDecoration(
-                                border: Border.all(color: AppColors.mainColor,width: 1,),
-                                borderRadius: BorderRadius.circular(23),
-                              ),
-                              child: Center(child: Text("Sign Up",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w400,color:AppColors.mainColor),),),
                             ),
                           ),
                         ],

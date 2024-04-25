@@ -38,7 +38,7 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                       child: Center(child: Text("LOGO",style: GoogleFonts.poppins(fontSize:64,fontWeight:FontWeight.w800,color:AppColors.mainColor,),))),
                   SizedBox(
                     // color: Colors.teal,
-                    height: mq.height *.4,
+                    height: mq.height *.45,
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -62,24 +62,11 @@ class _NewPasswordScreenState extends State<NewPasswordScreen> {
                                 icon: "assets/images/lock-icon.png", isPassword: true),
                           ],
                         ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(23),
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
-                          },
-                          child: Container(
-                            width: 285,
-                            height: 46,
-                            decoration: BoxDecoration(
-                              color:confirmPasswordController.text.isNotEmpty && passwordController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey,
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: Center(
-                              child: Text("Done",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
-                                color:confirmPasswordController.text.isNotEmpty && passwordController.text.isNotEmpty?Colors.white:AppColors.black6,),),
-                            ),
-                          ),
-                        ),
+                        UserWidgets.mainButton("Done", confirmPasswordController.text.isNotEmpty && passwordController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey,
+                            18, confirmPasswordController.text.isNotEmpty && passwordController.text.isNotEmpty?Colors.white:AppColors.black6, 10,
+                                () {
+                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+                                }),
                       ],
                     ),
                   ),

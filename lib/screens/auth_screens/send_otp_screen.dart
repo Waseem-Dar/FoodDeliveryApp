@@ -46,25 +46,11 @@ class _SendOTPScreenState extends State<SendOTPScreen> {
                    child: Text("Send OTP to recover password",style: GoogleFonts.poppins(
                     fontSize:13,fontWeight:FontWeight.w400,color:AppColors.black6,)),
                  ),
-                SizedBox(height: 50,),
-                InkWell(
-                  borderRadius: BorderRadius.circular(23),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => EnterOTPScreen(),));
-                  },
-                  child: Container(
-                    width: 285,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      color:phoneController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey,
-                      borderRadius: BorderRadius.circular(23),
-                    ),
-                    child: Center(
-                      child: Text("Send OTP",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
-                        color:phoneController.text.isNotEmpty?Colors.white:AppColors.black6,),),
-                    ),
-                  ),
-                ),
+                const SizedBox(height: 50,),
+                UserWidgets.mainButton("Send OTP", phoneController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey, 18,
+                    phoneController.text.isNotEmpty?Colors.white:AppColors.black6, 10, () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const EnterOTPScreen(),));
+                    }),
               ],
             ),
           ),

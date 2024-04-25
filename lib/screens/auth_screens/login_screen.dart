@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/screens/auth_screens/signin_screen.dart';
 import 'package:food_app/screens/auth_screens/send_otp_screen.dart';
@@ -60,6 +61,9 @@ class _LoginScreenState extends State<LoginScreen> {
                               // width: 311,
                               height: 46,
                               child: TextFormField(
+                               onTapOutside: (event) {
+                                 FocusManager.instance.primaryFocus?.unfocus();
+                               },
                                 controller: nameController,
                                 style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),
                                 decoration: InputDecoration(
@@ -82,7 +86,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             const SizedBox(height: 10,),
                             UserWidgets.textFieldLabel("Password"),
                             SizedBox(
-                              // width: 311,
                               height: 46,
                               child: TextFormField(
                                 controller: passwordController,
@@ -133,22 +136,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             )
                           ],
                         ),
-                        InkWell(
-                          borderRadius: BorderRadius.circular(23),
-                          onTap: () {},
-                          child: Container(
-                            width: 285,
-                            height: 46,
-                            decoration: BoxDecoration(
-                              color:nameController.text.isNotEmpty && passwordController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey,
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: Center(
-                              child: Text("Login",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
-                                color:nameController.text.isNotEmpty && passwordController.text.isNotEmpty?Colors.white:AppColors.black6,),),
-                            ),
-                          ),
-                        ),
+                        UserWidgets.mainButton("Login", nameController.text.isNotEmpty && passwordController.text.isNotEmpty?AppColors.mainColor: AppColors.whiteGrey,
+                            18, nameController.text.isNotEmpty && passwordController.text.isNotEmpty?Colors.white:AppColors.black6,
+                            10, () { }),
+
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [

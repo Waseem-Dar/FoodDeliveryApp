@@ -362,4 +362,26 @@ class UserWidgets{
     );
   }
 
+  static Widget mainButton(String text,Color bGColor,double fontSize,Color fontColor,double padding,VoidCallback onTap){
+    return Padding(
+      padding: EdgeInsets.only(bottom: 15,left: padding,right: padding),
+      child: InkWell(
+        borderRadius: BorderRadius.circular(23),
+        onTap: onTap,
+        child: Container(
+          width: 285,
+          height: 46,
+          decoration: BoxDecoration(
+            color:bGColor,
+            borderRadius: BorderRadius.circular(23),
+          ),
+          child: Center(
+            child: Text(text,style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:fontSize,
+                color:fontColor),),
+          ),
+        ),
+      ),
+    );
+  }
+
 }

@@ -147,12 +147,9 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                             UserWidgets.textFieldLabel("Any Instructions"),
                             AddressTextFieldWidget(controller: aIController,max: true,),
                             const SizedBox(height: 40,),
-
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 15,top: 15),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(23),
-                                onTap: () {
+                            UserWidgets.mainButton("Add Location", addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.blackGrey:AppColors.mainColor,
+                                16, addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.black6:Colors.white,
+                                13, () {
                                   LocationDetails locationDetails = LocationDetails(
                                       latitude: _markers.isNotEmpty?_markers.first.position.latitude:_initialCameraPosition.latitude,
                                       longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
@@ -164,21 +161,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                                   streetController.clear();
                                   aIController.clear();
                                   Navigator.pop(context);
-                                  },
-                                child: Container(
-                                  width: 285,
-                                  height: 46,
-                                  decoration: BoxDecoration(
-                                    color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.blackGrey:AppColors.mainColor,
-                                    borderRadius: BorderRadius.circular(23),
-                                  ),
-                                  child: Center(
-                                    child: Text("Add Location",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                        color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.black6:Colors.white),),
-                                  ),
-                                ),
-                              ),
-                            ),
+                                }),
                           ],
                         ),
                       ),

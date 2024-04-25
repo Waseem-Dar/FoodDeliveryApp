@@ -12,18 +12,18 @@ import '../../config/app_colors.dart';
 import '../../config/constructor.dart';
 import '../../widgets/address_edit_textField.dart';
 
-class EditAndDeleteLocationScreen extends StatefulWidget {
+class EditLocationScreen extends StatefulWidget {
   final LatLng location;
   final String address;
   final String street;
   final String instruction;
   final int index;
-  const EditAndDeleteLocationScreen({super.key, required this.location, required this.address, required this.street, required this.instruction,required this.index});
+  const EditLocationScreen({super.key, required this.location, required this.address, required this.street, required this.instruction,required this.index});
 
   @override
-  State<EditAndDeleteLocationScreen> createState() => _EditAndDeleteLocationScreenState();
+  State<EditLocationScreen> createState() => _EditLocationScreenState();
 }
-class _EditAndDeleteLocationScreenState extends State<EditAndDeleteLocationScreen> {
+class _EditLocationScreenState extends State<EditLocationScreen> {
 
   TextEditingController addressController = TextEditingController();
   TextEditingController streetController = TextEditingController();

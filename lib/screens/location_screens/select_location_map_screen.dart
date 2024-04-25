@@ -18,21 +18,11 @@ class AddLocationMap extends StatefulWidget {
   @override
   State<AddLocationMap> createState() => AddLocationMapState();
 }
-int _value = 0;
+int _value = 1;
 class AddLocationMapState extends State<AddLocationMap> {
   final Completer<GoogleMapController> _controller = Completer();
   final Set<Marker> _markers = {};
    final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
-  // static late LatLng _selectedLocation;
-
-  // @override
-  // void initState() {
-  //   super.initState();
-    // _getCurrentLocation();
-    // _initialCameraPosition = const LatLng(33.6687964,73.0742062);
-    // _selectedLocation = _initialCameraPosition;
-  //
-  // }
 
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
@@ -165,32 +155,14 @@ class AddLocationMapState extends State<AddLocationMap> {
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) => const NewAddressScreen(),));
                             },
-                            dense: true,
+                             contentPadding: const EdgeInsets.symmetric(horizontal: 13),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
                             leading:  Icon(Icons.add,size: 26,color: AppColors.mainColor,),
                             title: Text("Add a new Location",style: GoogleFonts.poppins(
                               fontSize:15,fontWeight:FontWeight.w500,color:AppColors.mainColor,),),
                           ),
-                          Padding(
-                            padding: const EdgeInsets.only(bottom: 15,top: 15),
-                            child: InkWell(
-                              borderRadius: BorderRadius.circular(23),
-                              onTap: () {
-                                Navigator.pop(context);},
-                              child: Container(
-                                width: 285,
-                                height: 46,
-                                decoration: BoxDecoration(
-                                  color:AppColors.mainColor,
-                                  borderRadius: BorderRadius.circular(23),
-                                ),
-                                child: Center(
-                                  child: Text("Continue",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                      color:Colors.white),),
-                                ),
-                              ),
-                            ),
-                          ),
+                          const SizedBox(height: 10,),
+                          UserWidgets.mainButton("Continue", AppColors.mainColor, 16, Colors.white, 30, () { }),
                         ],
                       ),
                     ),

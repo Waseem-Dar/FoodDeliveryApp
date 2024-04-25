@@ -60,27 +60,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 UserWidgets.textFieldLabel("Confirm Password"),
                 TextFieldWidget(controller: confirmPasswordController, icon: "assets/images/lock-icon.png", isPassword: true),
                 const SizedBox(height: 30,),
-                InkWell(
-                  borderRadius: BorderRadius.circular(23),
-                  onTap: () {
-                    Navigator.push(context, MaterialPageRoute(builder: (context) => HomeScreen(),));
-                  },
-                  child: Container(
-                    width: 285,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      color: (nameController.text.isNotEmpty && emailController.text.isNotEmpty && phoneController.text.isNotEmpty && passwordController.text.isNotEmpty
-                          && confirmPasswordController.text.isNotEmpty)?AppColors.mainColor: AppColors.whiteGrey,
-                      borderRadius: BorderRadius.circular(23),
-                    ),
-                    child: Center(
-                      child: Text("Sign Up",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
-                        color: (nameController.text.isNotEmpty && emailController.text.isNotEmpty && phoneController.text.isNotEmpty && passwordController.text.isNotEmpty
-                            && confirmPasswordController.text.isNotEmpty)?Colors.white:AppColors.black6,),),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20,),
+                UserWidgets.mainButton("Sign Up", (nameController.text.isNotEmpty && emailController.text.isNotEmpty && phoneController.text.isNotEmpty && passwordController.text.isNotEmpty
+                    && confirmPasswordController.text.isNotEmpty)?AppColors.mainColor: AppColors.whiteGrey,
+                    18, (nameController.text.isNotEmpty && emailController.text.isNotEmpty && phoneController.text.isNotEmpty && passwordController.text.isNotEmpty
+                        && confirmPasswordController.text.isNotEmpty)?Colors.white:AppColors.black6,
+                    10, () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomeScreen(),));
+                    }),
+                const SizedBox(height: 10,),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

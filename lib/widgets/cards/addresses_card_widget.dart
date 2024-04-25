@@ -2,7 +2,7 @@
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:food_app/screens/location_screens/edit_&_delete_location.dart';
+import 'package:food_app/screens/location_screens/edit_location.dart';
 import 'package:food_app/screens/location_screens/edit_location_screen.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -28,17 +28,9 @@ class AddressesCard extends StatelessWidget {
       },
       background: Container(
         color: AppColors.red1,
-
-        child: const Row(
-          mainAxisAlignment: MainAxisAlignment.end,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            Padding(
-              padding: EdgeInsets.only(right: 25),
-              child: ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
-            )
-          ],
-        ),
+        padding: const EdgeInsets.only(right: 25),
+        alignment: Alignment.centerRight,
+        child: const ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 20,color: Colors.white,),
       ),
       child: Container(
         height: 60,
@@ -60,7 +52,7 @@ class AddressesCard extends StatelessWidget {
               child: Text(street,style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
             ),
             trailing:IconButton(onPressed: (){
-              Navigator.push(context, MaterialPageRoute(builder: (context) => EditAndDeleteLocationScreen(
+              Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
                   location: location, address: address, street: street, instruction: instruction, index: index),));
             },
                 icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),

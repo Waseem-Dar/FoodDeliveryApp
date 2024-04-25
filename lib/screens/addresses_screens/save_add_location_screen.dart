@@ -144,7 +144,7 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                                 child: Text("subtitle",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
                               ),
                               trailing:IconButton(onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen2(
                                     location: location, address: address, street: street, instruction: instruction, index: index),));
                               },
                                   icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),

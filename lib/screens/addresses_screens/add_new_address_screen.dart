@@ -106,7 +106,8 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: mq.height * .35,
+              height: mq.height-520,
+              // height: mq.height * .35,
               child: GoogleMap(
                 zoomControlsEnabled: false,
                 mapType: MapType.normal,
@@ -130,14 +131,14 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     addressController.text = result;
                   });
                   setState(() {});
-                                },
+                  },
                 myLocationEnabled: true,
                 myLocationButtonEnabled: false,
               ),
             ),
             Positioned(
               right: 0,
-              top: 115,
+              bottom: 520,
               child:  UserWidgets.currentLocationButton(() {_getCurrentLocation();}),),
             Align(
               alignment: Alignment.bottomCenter,
@@ -149,12 +150,12 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     const SizedBox(height: 20,),
                     Container(
                       width: double.infinity,
-                      decoration: const BoxDecoration(
+                      height: 500,
                         color: Colors.white,
-                      ),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children:  [
                             const SizedBox(height: 70,),
                             UserWidgets.textFieldLabel("Address*"),

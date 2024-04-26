@@ -122,7 +122,7 @@ class UserWidgets{
     );
   }
 
-  static Widget inviteTextField(TextEditingController controller,VoidCallback onTap) {
+  static Widget inviteTextField(TextEditingController controller,VoidCallback onTap,double padding) {
     return Padding(
       padding: const EdgeInsets.fromLTRB( 40,17,42,25 ),
       child: SizedBox(
@@ -134,7 +134,7 @@ class UserWidgets{
           controller: controller,
           style: GoogleFonts.poppins(fontSize: 16, fontWeight: FontWeight.w400, color:AppColors.mainColor ),
           decoration: InputDecoration(
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
+              contentPadding:  EdgeInsets.only(left:padding ),
               focusedBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(23),
                 borderSide: BorderSide(width: 1, color: AppColors.mainColor),
@@ -369,7 +369,7 @@ class UserWidgets{
         borderRadius: BorderRadius.circular(23),
         onTap: onTap,
         child: Container(
-          width: 285,
+          width: double.infinity,
           height: 46,
           decoration: BoxDecoration(
             color:bGColor,

@@ -21,28 +21,10 @@ class _EditEmailScreenState extends State<EditEmailScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(23),
-            onTap: () {
-              Navigator.pop(context);
-              isEdit = false;
-            },
-            child: Container(
-              width: 285,
-              height: 46,
-              decoration: BoxDecoration(
-                color:isEdit?AppColors.mainColor: AppColors.whiteGrey,
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Center(
-                child: Text("Save",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                  color:isEdit?Colors.white:AppColors.black6,),),
-              ),
-            ),
-          ),
-        ),
+        floatingActionButton: UserWidgets.mainButton("Save", isEdit?AppColors.mainColor: AppColors.whiteGrey, 16,
+            isEdit?Colors.white:AppColors.black6, 50, () {
+          Navigator.pop(context);
+            }),
         body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),

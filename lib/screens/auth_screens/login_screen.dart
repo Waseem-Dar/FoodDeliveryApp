@@ -126,7 +126,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                   padding: const EdgeInsets.only(top: 10,left: 20),
                                   child: InkWell(
                                     onTap: () {
-                                      Navigator.push(context, MaterialPageRoute(builder:  (context) => SendOTPScreen(),));
+                                      Navigator.push(context, MaterialPageRoute(builder:  (context) => const SendOTPScreen(),));
                                     },
                                     splashColor: Colors.transparent,
                                       child: Text("Forgot Password?",style: GoogleFonts.poppins(

@@ -55,6 +55,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                         child: Column(
                           children: [
                             Text("Invite your friends and get rewarded!",style: GoogleFonts.poppins(fontSize:18,fontWeight:FontWeight.w500,color:Colors.white),),
+                            const SizedBox(height: 15,),
                             Text("Enjoy your rewards by sharing  with your friends and get some discounts.",style: GoogleFonts.poppins(fontSize:12,fontWeight:FontWeight.w400,color:Colors.white),),
                           ],
                         ),
@@ -73,7 +74,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
             Text("Your Referral  Code",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.black),),
             UserWidgets.inviteTextField(referralCodeController, ()async {
               await Clipboard.setData(ClipboardData(text: referralCodeController.text));
-            }),
+            },50),
             Text("Your QR CODE",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.black),),
             Container(
               height: 130,
@@ -94,7 +95,7 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
             Text("Your Referral  LINK",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.black),),
             UserWidgets.inviteTextField(referralLinkController, ()async {
               await Clipboard.setData(ClipboardData(text: referralLinkController.text));
-            }),
+            },20),
             Padding(
               padding: const EdgeInsets.only(bottom: 15),
               child: TextButton.icon(
@@ -105,10 +106,13 @@ class _InviteFriendsScreenState extends State<InviteFriendsScreen> {
                   ),
                   onPressed: (){},
                   icon: const Padding(
-                    padding: EdgeInsets.only(right: 30),
+                    padding: EdgeInsets.only(right: 20),
                     child: ImageIcon(AssetImage("assets/images/share-icon.png"),color: Colors.white,size: 18,),
                   ),
-                  label: Text("Share",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w400,color:Colors.white),)),
+                  label: Padding(
+                    padding: const EdgeInsets.only(right: 10),
+                    child: Text("Share",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w400,color:Colors.white),),
+                  )),
             ),
           ],
         ),

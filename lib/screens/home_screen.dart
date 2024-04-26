@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/painting.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
@@ -259,6 +260,29 @@ class _HomeScreenState extends State<HomeScreen> {
                       ],
                     ),
                   ),
+
+                  Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10),
+                    child:
+                        Flexible(
+                          child: SizedBox(
+                            height: 120,
+                            child: ListView.builder(
+                              padding: const EdgeInsets.symmetric(horizontal: 24),
+                              itemCount:AppList.deliciousFoodList.length,
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              itemBuilder: (context, index) {
+                                String name = AppList.deliciousFoodList[index]["name"];
+                                String image = AppList.deliciousFoodList[index]["image"];
+                                return DeliciousFoodCard(name: name, image: image, onTap: (){});
+                              },),
+                          ),
+                        ),
+                  ),
+
+
+
                   Padding(
                     padding: const EdgeInsets.fromLTRB(30,25,15,15),
                     child: Row(

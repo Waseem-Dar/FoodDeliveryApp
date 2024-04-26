@@ -23,30 +23,14 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
       child: Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton:  Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(23),
-            onTap: () {
-              Navigator.pop(context);
-              isEdit = false;
-            },
-            child: Container(
-              width: 285,
-              height: 46,
-              decoration: BoxDecoration(
-                color:(oldPasswordController.text.isNotEmpty && newPasswordController.text.isNotEmpty
-                    && confirmNewPasswordController.text.isNotEmpty)?AppColors.mainColor: AppColors.whiteGrey,
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Center(
-                child: Text("Save",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                  color:(oldPasswordController.text.isNotEmpty && newPasswordController.text.isNotEmpty
-                      && confirmNewPasswordController.text.isNotEmpty)?Colors.white:AppColors.black6,),),
-              ),
-            ),
-          ),
-        ),
+        floatingActionButton: UserWidgets.mainButton("Save", (oldPasswordController.text.isNotEmpty && newPasswordController.text.isNotEmpty
+            && confirmNewPasswordController.text.isNotEmpty)?AppColors.mainColor: AppColors.whiteGrey,
+            16, (oldPasswordController.text.isNotEmpty && newPasswordController.text.isNotEmpty
+                && confirmNewPasswordController.text.isNotEmpty)?Colors.white:AppColors.black6,
+            50, () {
+          Navigator.pop(context);
+            }),
+
         body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),

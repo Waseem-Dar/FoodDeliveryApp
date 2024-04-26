@@ -26,25 +26,26 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(23),
-          onTap: () {},
-          child: Container(
-            width: 285,
-            height: 46,
-            decoration: BoxDecoration(
-              color:AppColors.mainColor,
-              borderRadius: BorderRadius.circular(23),
-            ),
-            child: Center(
-              child: Text("Done",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
-                  color:Colors.white),),
-            ),
-          ),
-        ),
-      ),
+      floatingActionButton: UserWidgets.mainButton("Done", AppColors.mainColor, 18, Colors.white, 50, () { }),
+      // floatingActionButton: Padding(
+      //   padding: const EdgeInsets.only(bottom: 15),
+      //   child: InkWell(
+      //     borderRadius: BorderRadius.circular(23),
+      //     onTap: () {},
+      //     child: Container(
+      //       width: 285,
+      //       height: 46,
+      //       decoration: BoxDecoration(
+      //         color:AppColors.mainColor,
+      //         borderRadius: BorderRadius.circular(23),
+      //       ),
+      //       child: Center(
+      //         child: Text("Done",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:18,
+      //             color:Colors.white),),
+      //       ),
+      //     ),
+      //   ),
+      // ),
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25),

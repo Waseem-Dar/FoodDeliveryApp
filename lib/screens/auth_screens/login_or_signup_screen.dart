@@ -59,7 +59,7 @@ class _LoginOrSignUpScreenState extends State<LoginOrSignUpScreen> {
                                 Navigator.push(context, MaterialPageRoute(builder: (context) => const SignUpScreen(),));
                               },
                               child: Container(
-                                width: 285,
+                                width: double.infinity,
                                 height: 46,
                                 decoration: BoxDecoration(
                                   border: Border.all(color: AppColors.mainColor,width: 1,),

@@ -1,12 +1,15 @@
 import 'dart:async';
+import 'dart:developer';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:food_app/main.dart';
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/widgets/address_textFeild.dart';
 import 'package:food_app/widgets/user_widgets.dart';
+import 'package:geocoding/geocoding.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:location/location.dart' as deviceLocation;
 import 'package:location/location.dart';
 
 import '../../config/app_colors.dart';
@@ -48,7 +51,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
   }
 
   Future<void> _getCurrentLocation() async {
-    Location location = Location();
+    deviceLocation.Location location = deviceLocation.Location();
     bool serviceEnabled;
     PermissionStatus permissionGranted;
     LocationData? locationData;
@@ -72,6 +75,23 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
     locationData = await location.getLocation();
     _goToLocation(locationData);
   }
+  Future<String> getPlaceName(double latitude, double longitude) async {
+    try {
+      List<Placemark> placeMarks = await placemarkFromCoordinates(latitude, longitude);
+      if (placeMarks.isNotEmpty) {
+        Placemark placeMark = placeMarks[0];
+
+        String? street = placeMark.street;
+        String? subLocality = placeMark.subLocality;
+        String? city = placeMark.locality;
+        String? country = placeMark.country;
+        return "$street, $subLocality, $city, $country";
+      }
+    } catch (e) {
+      log('Error: $e');
+    }
+    return 'Place not found';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +110,8 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
           children: [
             SizedBox(
               width: double.infinity,
-              height: mq.height * .35,
+              // height: mq.height * .35,
+              height: mq.height-490,
               child: GoogleMap(
                 zoomControlsEnabled: false,
                 mapType: MapType.normal,
@@ -108,6 +129,10 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                         position: location,
                       ),
                     };
+                    getPlaceName(location.latitude, location.longitude).then((result){
+                      addressController.text = result;
+                    });
+
                   });
                 },
                 myLocationEnabled: true,
@@ -116,7 +141,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
             ),
             Positioned(
               right: 0,
-              top: 115,
+              bottom: 510,
               child:  UserWidgets.currentLocationButton(() {_getCurrentLocation();}),),
             Align(
               alignment: Alignment.bottomCenter,
@@ -128,6 +153,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                     const SizedBox(height: 20,),
                     Container(
                       width: double.infinity,
+                      height: 490,
                       decoration: const BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50)),
@@ -135,6 +161,7 @@ class _NewAddressScreenState extends State<NewAddressScreen> {
                       child: Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
                         child: Column(
+                          mainAxisAlignment: MainAxisAlignment.end,
                           children:  [
                             Image.asset("assets/images/bottom-line.png",width: 52,),
                             const SizedBox(height: 70,),

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/screens/about_screen.dart';
 import 'package:food_app/screens/addresses_screens/adresses_screen.dart';
+import 'package:food_app/screens/addresses_screens/adresses_screen_2.dart';
 import 'package:food_app/screens/cart_screens/cart_screen.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/invite_friends_screen.dart';
@@ -78,6 +79,9 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
               },23),
               UserWidgets.tileWidget("assets/images/addresses.png", "Addresses", () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const AddressesScreen(),));
+              },20),
+              UserWidgets.tileWidget("assets/images/addresses.png", "Addresses 2", () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const AddressesScreen2(),));
               },20),
               UserWidgets.tileWidget("assets/images/invite-icon.png", "Invite Friends", () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const InviteFriendsScreen(),));

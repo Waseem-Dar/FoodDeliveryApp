@@ -30,48 +30,12 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton:  restaurants[0]?
-        Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(23),
-            onTap: () {
+            UserWidgets.mainButton("Explore Restaurants", AppColors.mainColor, 16, Colors.white, 50, () {
               Navigator.pop(context);
-
-            },
-            child: Container(
-              width: 285,
-              height: 46,
-              decoration: BoxDecoration(
-                color:AppColors.mainColor,
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Center(
-                child: Text("Explore Restaurants",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                  color:Colors.white),),
-              ),
-            ),
-          ),
-        ):Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(23),
-            onTap: () {
+            })
+            : UserWidgets.mainButton("Explore Foods", AppColors.mainColor, 16, Colors.white, 50, () {
               Navigator.pop(context);
-            },
-            child: Container(
-              width: 285,
-              height: 46,
-              decoration: BoxDecoration(
-                color:AppColors.mainColor,
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Center(
-                child: Text("Explore Foods",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                    color:Colors.white),),
-              ),
-            ),
-          ),
-        ),
+            }),
         body:  SingleChildScrollView(
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25),

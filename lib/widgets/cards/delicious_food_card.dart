@@ -30,6 +30,7 @@ class DeliciousFoodCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(45)
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Container(
                   height:50,

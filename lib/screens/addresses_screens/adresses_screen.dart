@@ -23,27 +23,9 @@ class _AddressesScreenState extends State<AddressesScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.only(bottom: 15),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(23),
-          onTap: () {
-                  Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchLocationScreen(),));
-                  },
-          child: Container(
-            width: 285,
-            height: 46,
-            decoration: BoxDecoration(
-              color:AppColors.mainColor,
-              borderRadius: BorderRadius.circular(23),
-            ),
-            child: Center(
-              child: Text("Add new address",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                  color:Colors.white),),
-            ),
-          ),
-        ),
-      ),
+      floatingActionButton:UserWidgets.mainButton("Add new address", AppColors.mainColor, 16, Colors.white, 50, () {
+        Navigator.push(context, MaterialPageRoute(builder: (context) => const SearchLocationScreen(),));
+      }),
       body: SingleChildScrollView(
         child: Column(
           children: [

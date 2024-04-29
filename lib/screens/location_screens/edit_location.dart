@@ -74,28 +74,33 @@ class _EditLocationScreenState extends State<EditLocationScreen> {
 
                 ],
               ),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 15),
-                child: InkWell(
-                  borderRadius: BorderRadius.circular(23),
-                  onTap: () {
+              UserWidgets.mainButton("Save Changes", widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?AppColors.mainColor:AppColors.blackGrey,
+                  16, widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?Colors.white:AppColors.black6,
+                  10, () {
                     Navigator.pop(context);
-                  },
-                  child: Container(
-                    width: 285,
-                    height: 46,
-                    decoration: BoxDecoration(
-                      // when controller text edit  to color change
-                      color: widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?AppColors.mainColor:AppColors.blackGrey,
-                      borderRadius: BorderRadius.circular(23),
-                    ),
-                    child: Center(
-                      child: Text("Save Changes",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                          color: widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?Colors.white:AppColors.black6),),
-                    ),
-                  ),
-                ),
-              ),
+                  })
+              // Padding(
+              //   padding: const EdgeInsets.only(bottom: 15),
+              //   child: InkWell(
+              //     borderRadius: BorderRadius.circular(23),
+              //     onTap: () {
+              //       Navigator.pop(context);
+              //     },
+              //     child: Container(
+              //       width: 285,
+              //       height: 46,
+              //       decoration: BoxDecoration(
+              //         // when controller text edit  to color change
+              //         color: widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?AppColors.mainColor:AppColors.blackGrey,
+              //         borderRadius: BorderRadius.circular(23),
+              //       ),
+              //       child: Center(
+              //         child: Text("Save Changes",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
+              //             color: widget.address!=addressController.text || widget.street!=streetController.text || widget.instruction!=aIController.text ?Colors.white:AppColors.black6),),
+              //       ),
+              //     ),
+              //   ),
+              // ),
             ],
           ),
         ),

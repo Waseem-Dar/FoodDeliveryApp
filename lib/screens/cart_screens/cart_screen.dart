@@ -50,6 +50,8 @@ class _CartScreenState extends State<CartScreen> {
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
         backgroundColor: Colors.white,
+        floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+        floatingActionButton:AppList.myCartList.isEmpty? UserWidgets.mainButton("Explore ", AppColors.mainColor, 16, Colors.white, 50, () { }):null,
         body: Stack(
           children: [
             SingleChildScrollView(
@@ -119,13 +121,7 @@ class _CartScreenState extends State<CartScreen> {
                             padding: const EdgeInsets.symmetric(vertical: 8),
                             child: CartWidget(name: name, image: image, details: details, price: price, count: count, isSelected: isSelected, index: index,onChanged: () {
                               setState(() {
-                                // log(AppList.myCartList[1]["isSelected"].toString() );
-                                // AppList.myCartList[index]["isSelected"] = value;
                                getTotal();
-                                // if (!AppList.myCartList.any((item) => item["isSelected"])) {
-                                //   subTotal = 0;
-                                // }
-                                // AppList.myCartList[index]["isSelected"] = value;
                               });
                             },),
                           );
@@ -185,6 +181,10 @@ class _CartScreenState extends State<CartScreen> {
                               child: CartSimilarItemCard(image: image, details: details, price: price, oldPrice: oldPrice, rating: rating),
                             );
                           },),
+                        ),
+                        Visibility(
+                          visible: AppList.myCartList.any((item) => item["isSelected"] == true),
+                          child: const SizedBox(height: 170, width: double.infinity),
                         )
                       ],
                     )
@@ -230,6 +230,7 @@ class _CartScreenState extends State<CartScreen> {
                                   color: AppColors.mainColor.withOpacity(0.1),
                                   borderRadius: BorderRadius.circular(9)
                                 ),
+                                // OR Charges -->
                                 child: Center(child: Text("Free",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:AppColors.mainColor),)))
                           ],
                         ),
@@ -245,26 +246,9 @@ class _CartScreenState extends State<CartScreen> {
                           ],
                         ),
                       ),
-                      Padding(
-                        padding: const EdgeInsets.only(bottom: 15),
-                        child: InkWell(
-                          onTap: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen(),));
-                          },
-                          child: Container(
-                            width: 285,
-                            height: 46,
-                            decoration: BoxDecoration(
-                              color:AppColors.mainColor,
-                              borderRadius: BorderRadius.circular(23),
-                            ),
-                            child: Center(
-                              child: Text("Check Out ( $selectTotal )",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                  color:Colors.white),),
-                            ),
-                          ),
-                        ),
-                      ),
+                      UserWidgets.mainButton("Check Out ( $selectTotal )", AppColors.mainColor, 16, Colors.white, 50, () {
+                        Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen(),));
+                      }),
                     ],
                   ),
                 ),

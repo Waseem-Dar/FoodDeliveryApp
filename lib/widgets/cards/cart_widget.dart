@@ -52,7 +52,6 @@ class _CartWidgetState extends State<CartWidget> {
                     color: Colors.black.withOpacity(0.1),offset: const Offset(0, 4),blurRadius: 11.199999809265137)]
             ),
             child: Row(
-
               children: [
                 Image.asset(widget.image,width: 70,height: 70,),
                 const SizedBox(width: 15,),

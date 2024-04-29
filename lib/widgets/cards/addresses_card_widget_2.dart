@@ -26,7 +26,6 @@ class AddressesCard2 extends StatefulWidget {
 class _AddressesCard2State extends State<AddressesCard2> {
   @override
   Widget build(BuildContext context) {
-// List<Map<String, dynamic>>  addresses = AppList.addressesList;
     return Slidable(
       key: Key(widget.index.toString()),
 
@@ -36,41 +35,6 @@ class _AddressesCard2State extends State<AddressesCard2> {
           // addresses.removeAt(widget.index);
         }),
         children: [
-
-          // InkWell(
-          //   onTap: () {
-          //     Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(location: widget.location, address: widget.address, street: widget.street, instruction: widget.instruction, index: widget.index),));
-          //   },
-          //   child: Container(
-          //     width: mq.width / 4,
-          //     color: AppColors.mainColor,
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment. center,
-          //       children: [
-          //         const ImageIcon(AssetImage("assets/images/edit-icon.png"),size: 21,color: Colors.white,),
-          //         const SizedBox(height: 5,),
-          //         Text("Edit",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:Colors.white),)
-          //       ],
-          //     ),
-          //   ),
-          // ),
-          // InkWell(
-          //   onTap: () {
-          //     showDeleteDialog(context, widget.index);
-          //   },
-          //   child: Container(
-          //     width: mq.width / 4,
-          //     color: AppColors.red1,
-          //     child: Column(
-          //       mainAxisAlignment: MainAxisAlignment. center,
-          //       children: [
-          //         const ImageIcon(AssetImage("assets/images/delete-icon.png"),size: 21,color: Colors.white,),
-          //         const SizedBox(height: 5,),
-          //         Text("Delete",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:Colors.white),)
-          //       ],
-          //     ),
-          //   ),
-          // ),
           SlidableAction(
 
             flex: 1,
@@ -84,7 +48,7 @@ class _AddressesCard2State extends State<AddressesCard2> {
           ),
           SlidableAction(
             onPressed: (context) {
-              AppList.addressesList.removeAt(widget.index);
+              // AppList.addressesList.removeAt(widget.index);
             },
             backgroundColor: AppColors.red1,
             foregroundColor: Colors.white,

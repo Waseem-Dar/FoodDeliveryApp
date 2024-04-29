@@ -216,6 +216,7 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                                         color: AppColors.mainColor.withOpacity(0.1),
                                         borderRadius: BorderRadius.circular(9)
                                     ),
+                                    // OR CHARGES -->
                                     child: Center(child: Text("Free",style: GoogleFonts.poppins(fontSize:10,fontWeight:FontWeight.w500,color:AppColors.mainColor),)))
                               ],
                             ),

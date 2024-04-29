@@ -151,57 +151,38 @@ class _AddNewAddressScreenState extends State<AddNewAddressScreen> {
                     Container(
                       width: double.infinity,
                       height: 500,
+                      padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
                         color: Colors.white,
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 40,vertical: 10),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.end,
-                          children:  [
-                            const SizedBox(height: 70,),
-                            UserWidgets.textFieldLabel("Address*"),
-                            AddressTextFieldWidget(controller: addressController,max: false,),
-                            const SizedBox(height: 15,),
-                            UserWidgets.textFieldLabel("Street/Apartment/Floor*"),
-                            AddressTextFieldWidget(controller: streetController,max: false,),
-                            const SizedBox(height: 15,),
-                            UserWidgets.textFieldLabel("Near Locations (if any)"),
-                            AddressTextFieldWidget(controller: nearLocationController,max: false,),
-                            const SizedBox(height: 105,),
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children:  [
+                          const SizedBox(height: 70,),
+                          UserWidgets.textFieldLabel("Address*"),
+                          AddressTextFieldWidget(controller: addressController,max: false,),
+                          const SizedBox(height: 15,),
+                          UserWidgets.textFieldLabel("Street/Apartment/Floor*"),
+                          AddressTextFieldWidget(controller: streetController,max: false,),
+                          const SizedBox(height: 15,),
+                          UserWidgets.textFieldLabel("Near Locations (if any)"),
+                          AddressTextFieldWidget(controller: nearLocationController,max: false,),
+                          const SizedBox(height: 120,),
+                          UserWidgets.mainButton("Add Location", addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.blackGrey:AppColors.mainColor,
+                              16, addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.black6:Colors.white,
+                              10, () {
+                                LocationDetails locationDetails = LocationDetails(
+                                    latitude: _markers.isNotEmpty?_markers.first.position.latitude:_initialCameraPosition.latitude,
+                                    longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
+                                    address: addressController.text,
+                                    street: streetController.text,
+                                    instructions: nearLocationController.text);
 
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 15,top: 15),
-                              child: InkWell(
-                                borderRadius: BorderRadius.circular(23),
-                                onTap: () {
-                                  LocationDetails locationDetails = LocationDetails(
-                                      latitude: _markers.isNotEmpty?_markers.first.position.latitude:_initialCameraPosition.latitude,
-                                      longitude: _markers.isNotEmpty?_markers.first.position.longitude:_initialCameraPosition.longitude,
-                                      address: addressController.text,
-                                      street: streetController.text,
-                                      instructions: nearLocationController.text);
-
-                                  addressController.clear();
-                                  streetController.clear();
-                                  nearLocationController.clear();
-                                  // use pushReplacement to navigate
-                                  Navigator.push(context, MaterialPageRoute(builder: (context) => const  SaveAddLocationScreen(),));
-                                },
-                                child: Container(
-                                  width: 285,
-                                  height: 46,
-                                  decoration: BoxDecoration(
-                                    color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.blackGrey:AppColors.mainColor,
-                                    borderRadius: BorderRadius.circular(23),
-                                  ),
-                                  child: Center(
-                                    child: Text("Add Location",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                        color:addressController.text.isEmpty || streetController.text.isEmpty || _markers.isEmpty?AppColors.black6:Colors.white),),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
+                                addressController.clear();
+                                streetController.clear();
+                                nearLocationController.clear();
+                                // use pushReplacement to navigate
+                                Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const  SaveAddLocationScreen(),));
+                              }),
+                        ],
                       ),
                     ),
                   ],

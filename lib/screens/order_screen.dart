@@ -20,26 +20,8 @@ class _OrdersScreenState extends State<OrdersScreen> {
     return Scaffold(
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-        floatingActionButton: Padding(
-          padding: const EdgeInsets.only(bottom: 15),
-          child: InkWell(
-            borderRadius: BorderRadius.circular(23),
-            onTap: () {
-              Navigator.pop(context);},
-            child: Container(
-              width: 285,
-              height: 46,
-              decoration: BoxDecoration(
-                color:AppColors.mainColor,
-                borderRadius: BorderRadius.circular(23),
-              ),
-              child: Center(
-                child: Text("Explore & order now",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                    color:Colors.white),),
-              ),
-            ),
-          ),
-        ),
+        floatingActionButton:AppList.pastOrderList.isEmpty? UserWidgets.mainButton("Explore & order now", AppColors.mainColor, 16, Colors.white, 50, () {})
+            :UserWidgets.mainButton("Order now", AppColors.mainColor, 16, Colors.white, 50, () {}),
       body: SingleChildScrollView(
         child: Column(
           children: [

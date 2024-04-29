@@ -10,6 +10,8 @@ import 'package:location/location.dart';
 import '../../config/app_colors.dart';
 import '../../config/app_list.dart';
 import '../../main.dart';
+import '../location_screens/edit_location.dart';
+import 'add_new_address_screen.dart';
 
 class SaveAddLocationScreen extends StatefulWidget {
   const SaveAddLocationScreen({super.key});
@@ -112,7 +114,7 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                 const SizedBox(height: 20,),
                 Container(
                   width: double.infinity,
-                  padding: const EdgeInsets.fromLTRB(15, 10, 15, 15),
+                  padding: const EdgeInsets.only(top: 10),
                   decoration: const BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.only(topRight: Radius.circular(50),topLeft: Radius.circular(50))
@@ -137,6 +139,7 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                           children: [
                             ListTile(
                               dense:true,
+                              contentPadding: const EdgeInsets.only(left: 25,right: 20),
                               leading:  ImageIcon(const AssetImage("assets/images/location-icon.png"),size: 26,color: AppColors.mainColor,),
                               title: Text("title",style: GoogleFonts.poppins(fontSize:13,fontWeight:FontWeight.w600,color:AppColors.mainColor),),
                               subtitle: Padding(
@@ -144,7 +147,7 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                                 child: Text("subtitle",style: GoogleFonts.poppins(fontSize:11,fontWeight:FontWeight.w400,color:AppColors.mainColor),),
                               ),
                               trailing:IconButton(onPressed: (){
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen2(
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => EditLocationScreen(
                                     location: location, address: address, street: street, instruction: instruction, index: index),));
                               },
                                   icon: ImageIcon(const AssetImage("assets/images/edit-icon.png"),size: 21,color: AppColors.mainColor,)),
@@ -153,23 +156,10 @@ class _SaveAddLocationScreenState extends State<SaveAddLocationScreen> {
                           ],
                         );
                       },),
-                      InkWell(
-                        borderRadius: BorderRadius.circular(23),
-                        onTap: () {
-                        },
-                        child: Container(
-                          width: 285,
-                          height: 46,
-                          decoration: BoxDecoration(
-                            color:AppColors.mainColor,
-                            borderRadius: BorderRadius.circular(23),
-                          ),
-                          child: Center(
-                            child: Text("Add new address",style: GoogleFonts.poppins(fontWeight:FontWeight.w400,fontSize:16,
-                                color:Colors.white),),
-                          ),
-                        ),
-                      ),
+                      UserWidgets.mainButton("Add new address", AppColors.mainColor, 16, Colors.white, 50, () {
+                        Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => const AddNewAddressScreen(),));
+                      })
+
                     ],
                   ),
                 ),

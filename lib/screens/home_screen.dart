@@ -264,20 +264,18 @@ class _HomeScreenState extends State<HomeScreen> {
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child:
-                        Flexible(
-                          child: SizedBox(
-                            height: 120,
-                            child: ListView.builder(
-                              padding: const EdgeInsets.symmetric(horizontal: 24),
-                              itemCount:AppList.deliciousFoodList.length,
-                              shrinkWrap: true,
-                              scrollDirection: Axis.horizontal,
-                              itemBuilder: (context, index) {
-                                String name = AppList.deliciousFoodList[index]["name"];
-                                String image = AppList.deliciousFoodList[index]["image"];
-                                return DeliciousFoodCard(name: name, image: image, onTap: (){});
-                              },),
-                          ),
+                        SizedBox(
+                          height: 120,
+                          child: ListView.builder(
+                            padding: const EdgeInsets.symmetric(horizontal: 24),
+                            itemCount:AppList.deliciousFoodList.length,
+                            shrinkWrap: true,
+                            scrollDirection: Axis.horizontal,
+                            itemBuilder: (context, index) {
+                              String name = AppList.deliciousFoodList[index]["name"];
+                              String image = AppList.deliciousFoodList[index]["image"];
+                              return DeliciousFoodCard(name: name, image: image, onTap: (){});
+                            },),
                         ),
                   ),
 

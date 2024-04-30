@@ -1,7 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../../config/app_colors.dart';
 import '../../main.dart';
@@ -9,6 +12,9 @@ import '../../widgets/address_textFeild.dart';
 import '../../widgets/user_widgets.dart';
 
 class CheckOutScreen extends StatefulWidget {
+  // final LatLng location;
+  // final String address;
+  // final String street;
   const CheckOutScreen({super.key});
 
   @override
@@ -18,6 +24,29 @@ bool cash = false;
 bool online = false;
 TextEditingController aDIController = TextEditingController();
 class _CheckOutScreenState extends State<CheckOutScreen> {
+  final Completer<GoogleMapController> _controller = Completer();
+  final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
+  // late Set<Marker> _markers = {};
+  Future<void> _onMapCreated(GoogleMapController controller) async {
+    _controller.complete(controller);
+
+  }
+    late BitmapDescriptor pinLocationIcon;
+  @override
+  void initState() {
+    super.initState();
+    setCustomMapPin();
+  }
+  void setCustomMapPin() async {
+    pinLocationIcon = BitmapDescriptor.defaultMarker;
+    BitmapDescriptor customIcon = await BitmapDescriptor.fromAssetImage(
+        const ImageConfiguration(size:Size.fromHeight(19),),
+        'assets/images/marker-icon.png',);
+    setState(() {
+      pinLocationIcon = customIcon;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return  Scaffold(
@@ -52,19 +81,34 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                   height: 220,
                   child: Stack(
                     children: [
-                      Container(
+                      SizedBox(
                         width: double.infinity,
                         height: 220,
-                        color: Colors.teal.withOpacity(0.7),
-                        child: const Center(
-                          child: Text("MAP",style: TextStyle(color: Colors.white,fontSize: 20),),
+                        child: GoogleMap(
+                          zoomControlsEnabled: false,
+                          mapType: MapType.normal,
+                          initialCameraPosition: CameraPosition(
+                            target: _initialCameraPosition,
+                            zoom: 14.0,
+                          ),
+                          onMapCreated: _onMapCreated,
+                          markers:{
+                            Marker(
+                                markerId: const MarkerId('selectedLocation'),
+                                position: _initialCameraPosition,
+                                icon: pinLocationIcon,
+                            ),
+                          },
+                          // onTap: _handleTap,
+                          myLocationEnabled: true,
+                          myLocationButtonEnabled: false,
                         ),
                       ),
                       Align(
                         alignment: Alignment.bottomCenter,
                         child: Container(
                           width: double.infinity,
-                          height: 96,
+                          height: 90,
                           margin: const EdgeInsets.symmetric(horizontal: 20,vertical: 7),
                           padding: const EdgeInsets.all(10),
                           decoration: BoxDecoration(

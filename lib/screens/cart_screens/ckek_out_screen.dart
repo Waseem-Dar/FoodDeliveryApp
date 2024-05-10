@@ -26,7 +26,6 @@ TextEditingController aDIController = TextEditingController();
 class _CheckOutScreenState extends State<CheckOutScreen> {
   final Completer<GoogleMapController> _controller = Completer();
   final LatLng _initialCameraPosition = const LatLng(33.6687964,73.0742062);
-  // late Set<Marker> _markers = {};
   Future<void> _onMapCreated(GoogleMapController controller) async {
     _controller.complete(controller);
 
@@ -330,7 +329,6 @@ class _CheckOutScreenState extends State<CheckOutScreen> {
                       ),
                     ),
                   ),
-
                 ],
               ),
             ),

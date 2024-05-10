@@ -6,7 +6,7 @@ import 'package:food_app/screens/addresses_screens/adresses_screen_2.dart';
 import 'package:food_app/screens/cart_screens/cart_screen.dart';
 import 'package:food_app/screens/favorite_screen.dart';
 import 'package:food_app/screens/invite_friends_screen.dart';
-import 'package:food_app/screens/nearBy_screen.dart';
+import 'package:food_app/screens/near_by_screen.dart';
 import 'package:food_app/screens/order_screen.dart';
 import 'package:food_app/screens/profile_screens/profile_screen.dart';
 import 'package:food_app/screens/privacy_screen.dart';
@@ -68,7 +68,7 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
                 Navigator.push(context, MaterialPageRoute(builder: (context) => const CartScreen(),));
               },22),
               UserWidgets.tileWidget("assets/images/current-l-icon.png", "Nearby", () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) => const NearByScreen(),));
+                Navigator.push(context, MaterialPageRoute(builder: (context) => const NearbyScreen(),));
               },21),
               Divider(color: AppColors.white1,height: 15,endIndent: 25,indent: 30 ,thickness: 2,),
               UserWidgets.tileWidget("assets/images/offer-icon.png", "Vouchers & Offers", () {

@@ -1,0 +1,66 @@
+name: "Build & Release Android"
+
+on:
+  pull_request:
+    branches:
+      - main
+      - master
+  push:
+    branches:
+      - main
+      - master
+      - develop
+
+jobs:
+  build:
+    name: Build & Release Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup Java
+        uses: actions/setup-java@v1
+        with:
+          java-version: '12.x'
+
+      - name: Setup Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          flutter-version: '2.2.0'
+
+      - name: Install dependencies
+        run: flutter pub get
+        continue-on-error: true
+
+      - name: Display pubspec.yaml if pub get fails
+        if: failure()
+        run: cat pubspec.yaml
+
+      - name: Display pubspec.lock if pub get fails
+        if: failure()
+        run: cat pubspec.lock
+
+      - name: Display Flutter doctor if pub get fails
+        if: failure()
+        run: flutter doctor -v
+
+      - name: Run tests
+        run: flutter test
+
+      - name: Build Android APK
+        run: flutter build apk --debug --split-per-abi
+
+      - name: Upload Release Artifacts
+        uses: actions/upload-artifact@v2
+        with:
+          name: Android APKs
+          path: build/app/outputs/apk/debug/
+
+      - name: Create Release
+        uses: ncipollo/release-action@v1
+        with:
+          artifacts: build/app/outputs/apk/debug/*.apk
+          tag: v1.0.${{ github.run_number }}
+          token: ${{ secrets.TOKEN }}

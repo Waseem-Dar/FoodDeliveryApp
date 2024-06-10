@@ -49,6 +49,7 @@ class _CartScreenState extends State<CartScreen> {
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
         backgroundColor: Colors.white,
         floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
         floatingActionButton:AppList.myCartList.isEmpty? UserWidgets.mainButton("Explore ", AppColors.mainColor, 16, Colors.white, 50, () { }):null,

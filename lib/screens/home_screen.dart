@@ -1,7 +1,4 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:food_app/config/app_colors.dart';
 import 'package:food_app/config/app_list.dart';
@@ -51,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context){
     mq = MediaQuery.of(context).size;
     return GestureDetector(
       onTap: () => FocusScope.of(context).unfocus(),
@@ -94,13 +91,13 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-
-            bottom:isSearch?PreferredSize(preferredSize: const Size(double.infinity, 80), child: Column(
+            bottom:isSearch?PreferredSize(
+              preferredSize:const Size(double.infinity, 80), child:Column(
               children: [
                 Text("What would you like to eat?",style: GoogleFonts.poppins(fontSize:16,fontWeight:FontWeight.w600,color:Colors.white,),),
-                UserWidgets.homeSearchTextField(searchController,"Search")
-              ],
-            )):null,
+                UserWidgets.homeSearchTextField(searchController,"Search",() {},() {},)
+              ],),
+            ):null,
 
             actions: [
               isSearch?const SizedBox():IconButton(

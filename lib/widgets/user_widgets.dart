@@ -16,12 +16,13 @@ class UserWidgets{
     );
   }
 
-  static Widget homeSearchTextField( TextEditingController controller,String hintText){
+  static Widget homeSearchTextField( TextEditingController controller,String hintText, VoidCallback onTap,  VoidCallback onChanged){
     return Container(
       height: 27,
       margin: const EdgeInsets.only(bottom: 15,top: 10),
       padding: const EdgeInsets.symmetric(horizontal: 40),
       child: TextFormField(
+        onChanged:(value) => onChanged(),
         controller: controller,
         cursorHeight: 17,
         style: GoogleFonts.poppins(fontSize:14,fontWeight:FontWeight.w400,color:AppColors.black6),
@@ -39,7 +40,9 @@ class UserWidgets{
           suffixIconConstraints: const BoxConstraints(),
           suffixIcon: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 9,vertical: 7),
-            child: Image.asset("assets/images/search-icon.png",),
+            child: InkWell(
+              onTap: onTap,
+                child: Image.asset("assets/images/search-icon.png",)),
           ),
         ),
       ),

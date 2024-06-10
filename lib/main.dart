@@ -4,7 +4,7 @@ import 'package:food_app/screens/auth_screens/login_screen.dart';
 
 import 'package:food_app/screens/home_screen.dart';
 import 'package:food_app/screens/location_screens/new_address_screen.dart';
-import 'package:food_app/splash_screen.dart';
+import 'package:food_app/screens/splash_screen.dart';
 
 void main() {
   runApp(const MyApp());

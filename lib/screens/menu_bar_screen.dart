@@ -29,7 +29,7 @@ class _MenuBarScreenState extends State<MenuBarScreen> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.fromLTRB(28,53,28,50),
+          padding: const EdgeInsets.fromLTRB(28,53,28,10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
